@@ -13,14 +13,20 @@
     $stateProvider
       .state('index', {
         url: '/',
+        templateUrl: 'landing.html'
       })
       .state('signin', {
         url: '/signin',
         templateUrl: 'signin.html',
         controller: 'SignInController',
         controllerAs: 'vm'
-      });
+      })
+      .state('tripsindex', {
+        url: '/trips',
+        templateUrl: 'trips.index.html'
+      })
   }
+  // there is an issue where sign in with Google button redirects before authenticating
 
   function AuthProvider($authProvider) {
     $authProvider.google({
