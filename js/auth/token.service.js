@@ -9,7 +9,7 @@
   function tokenService($log, $window) {
     $log.info('token service loaded!');
 
-    var TOKEN_KEY = 'traveltokenkey';
+    var TOKEN_KEY = 'satellizer_token';
     var service = {
       store: store,
       retrieve: retrieve,

@@ -2,28 +2,29 @@
   "use strict";
 
   angular
-    .module("Travelbucket")
-    .controller("SignInController", SignInController);
+    .module('Travelbucket')
+    .controller('SignInController', SignInController);
 
-  SignInController.$inject = ["$log", "authService", "userService", "$state"];
+  SignInController.$inject = ['$log', 'authService', 'userService', '$state', '$auth'];
 
-  function SignInController($log, authService, userService, $state) {
+  function SignInController($log, authService, userService, $state, $auth) {
     var vm = this;
 
     // BINDINGS
     vm.signUp = {
-      email:    "",
-      name:     "",
-      password: "",
-      passwordConfirmation: ""
+      email: '',
+      name: '',
+      password: '',
+      passwordConfirmation: ''
     };
     vm.submitSignUp = submitSignUp;
     vm.logIn = {
-      email:    "",
-      password: ""
+      email: '',
+      password: ''
     };
     vm.submitLogIn = submitLogIn;
     vm.conflict = false;
+    vm.authenticate = authenticate;
 
     // FUNCTIONS
     function submitSignUp() {
@@ -62,6 +63,11 @@
         );
     }
 
-    $log.info("SignInController loaded!");
+    $log.info('SignInController loaded!');
+
+    function authenticate(provider) {
+      $auth.authenticate(provider)
+      $state.go('index');
+    }
   }
 })();
