@@ -12,7 +12,8 @@
     var service = {
       logIn: logIn,
       isLoggedIn: isLoggedIn,
-      logOut: logOut
+      logOut: logOut,
+      currentUser: currentUser
     }
     return service;
 
@@ -38,6 +39,14 @@
 
     function logOut() {
       token.destroy();
+    }
+
+    function currentUser() {
+      if(isLoggedIn()) {
+        return token.decode();
+      } else {
+        return false;
+      }
     }
   }
 }());

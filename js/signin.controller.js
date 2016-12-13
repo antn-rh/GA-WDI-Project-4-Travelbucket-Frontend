@@ -66,8 +66,11 @@
     $log.info('SignInController loaded!');
 
     function authenticate(provider) {
-      $auth.authenticate(provider)
-      $state.go('tripsindex');
+      $auth.authenticate(provider).then(
+        function() {
+          $state.go('tripsindex');
+        }
+      )
     }
   }
 })();
