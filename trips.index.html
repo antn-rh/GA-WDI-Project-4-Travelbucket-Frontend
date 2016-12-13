@@ -1,1 +1,10 @@
-This is where all of my trips will show up. 
+This is where all of my trips will show up.
+
+<ul>
+  <li ng-repeat="trip in tripListVm.trips">
+    {{trip[0].location}}, {{trip[0].startDate | date: 'MM/dd/yy'}} - {{trip[0].endDate | date: 'MM/dd/yy'}}
+    <a ui-sref="tripsShow({id: trip[0]._id})">More Info</a>
+    <a ui-sref="tripsEdit({id: trip[0]._id})">Edit</a>
+    <a href="" ng-click="tripListVm.deleteTrip(trip)">Delete</a>
+  </li>
+</ul>

@@ -4,7 +4,7 @@
     .module('Travelbucket')
     .controller('TripsListController', TripsListController)
     .controller('TripsNewController', TripsNewController)
-    .controller('TripsShowController', TripsListController)
+    .controller('TripsShowController', TripsShowController)
     .controller('TripsEditController', TripsEditController)
 
   TripsListController.$inject = ['TripsResource'];
@@ -17,7 +17,8 @@
     vm.trips = [];
     vm.deleteTrip = deleteTrip;
 
-    TripsResource.query().$promise.then(function(data) {
+    TripsResource.get().$promise.then(function(data) {
+      console.log(data.trips);
       vm.trips = data;
     });
 
@@ -50,7 +51,7 @@
     var vm = this;
     vm.trip = {};
 
-    TripResource.get({id: $stateParams.id}).$promise.then(function(jsonTrip) {
+    TripsResource.get({id: $stateParams.id}).$promise.then(function(jsonTrip) {
       vm.trip = jsonTrip;
     });
   }
