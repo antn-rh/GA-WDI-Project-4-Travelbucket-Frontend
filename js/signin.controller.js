@@ -37,7 +37,7 @@
           // on success
           function(decodedToken) {
             $log.info('Logged in!', decodedToken);
-            $state.go('tripsindex');
+            $state.go('tripsIndex');
           },
           // on error
           function(err) {
@@ -54,7 +54,7 @@
           // on success
           function(decodedToken) {
             $log.info('Logged in!', decodedToken);
-            $state.go('tripsindex');
+            $state.go('tripsIndex');
           },
           // on error
           function(err) {
@@ -68,7 +68,7 @@
     function authenticate(provider) {
       $auth.authenticate(provider).then(
         function() {
-          $state.go('tripsindex');
+          $state.go('tripsIndex');
         }
       )
     }

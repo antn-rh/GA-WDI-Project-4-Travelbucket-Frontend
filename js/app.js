@@ -21,10 +21,30 @@
         controller: 'SignInController',
         controllerAs: 'vm'
       })
-      .state('tripsindex', {
+      .state('tripsIndex', {
         url: '/trips',
-        templateUrl: 'trips.index.html'
+        templateUrl: 'trips.index.html',
+        controller: 'TripsListController',
+        controllerAs: 'tripListVm'
       })
+      .state('tripsNew', {
+        url: '/trips/new',
+        templateUrl: 'trips.new.html',
+        controller: 'TripsNewController',
+        controllerAs: 'tripNewVm'
+      })
+      .state('tripsShow', {
+        url: '/trips/show/:id',
+        templateUrl: 'trips.show.html',
+        controller: 'TripsShowController',
+        controllerAs: 'tripShowVm'
+      })
+      .state('tripsEdit', {
+        url: '/trips/edit/:id',
+        templateUrl: 'trips.edit.html',
+        controller: 'TripsEditController',
+        controllerAs: 'tripEditVm'
+      });
   }
   // there is an issue where sign in with Google button redirects before authenticating
 
