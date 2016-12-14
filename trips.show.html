@@ -1,1 +1,38 @@
 This is the page to show an individual trip.
+<br>
+<a ui-sref="tripsIndex">Back to Trips</a>
+
+<div>
+  <h1><u>{{tripShowVm.trip.location}}</u></h1>
+  Dates: {{tripShowVm.trip.startDate | date: 'MM/dd/yy'}} - {{tripShowVm.trip.endDate | date: 'MM/dd/yy'}}
+  <br>
+  <br>
+  Departing Flight:
+  <ul>
+    <li>Origin: {{tripShowVm.trip.departingFlight.origin}}</li>
+    <li>Destination: {{tripShowVm.trip.departingFlight.destination}}</li>
+    <li>Departure Time: {{tripShowVm.trip.departingFlight.departureTime}}</li>
+    <li>Flight Duration: {{tripShowVm.trip.departingFlight.duration}}</li>
+  </ul>
+  <br>
+  Return Flight:
+  <ul>
+    <li>Origin: {{tripShowVm.trip.returnFlight.origin}}</li>
+    <li>Destination: {{tripShowVm.trip.returnFlight.destination}}</li>
+    <li>Departure Time: {{tripShowVm.trip.returnFlight.departureTime}}</li>
+    <li>Flight Duration: {{tripShowVm.trip.returnFlight.duration}}</li>
+  </ul>
+  <br>
+  Lodging: {{tripShowVm.trip.lodgingAddress}}
+  <br>
+  <br>
+  Bookmarks:
+  <ul>
+    <li ng-repeat="bookmark in tripShowVm.trip.bookmarks">
+      {{bookmark}}
+    </li>
+  </ul>
+  <br>
+  <a ui-sref="tripsEdit({id: trip._id})">Edit</a>
+  <a href="" ng-click="tripListVm.deleteTrip(trip)">Delete</a>
+</div>

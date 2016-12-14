@@ -19,11 +19,11 @@
 
     TripsResource.get().$promise.then(function(data) {
       console.log(data.trips);
-      vm.trips = data;
+      vm.trips = data.trips;
     });
 
     function deleteTrip(tripToDelete) {
-      TripResource.delete({id: tripToDelete._id}).$promise.then(function(response) {
+      TripsResource.delete({id: tripToDelete._id}).$promise.then(function(response) {
         if(response.message) {
           console.log(response.message);
           vm.trips = vm.trips.filter(function(trip) {
