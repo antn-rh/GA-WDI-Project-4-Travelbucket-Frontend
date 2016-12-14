@@ -9,7 +9,7 @@
   <header ng-controller="NavbarController as vm">
     <nav>
       <div>
-        <p ng-show="vm.authService.isLoggedIn()">Hello, {{vm.userName}}</p>
+        <p ng-show="vm.authService.isLoggedIn()">{{vm.userName}}</p>
         <button ng-hide="vm.authService.isLoggedIn()" ui-sref="signin" type="button">Sign in</button>
         <button ng-show="vm.authService.isLoggedIn()" ng-click= "vm.authService.logOut()" type="button">Sign out</button>
       </div>

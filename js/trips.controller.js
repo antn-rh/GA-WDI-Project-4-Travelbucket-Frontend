@@ -7,31 +7,19 @@
     .controller('TripsShowController', TripsShowController)
     .controller('TripsEditController', TripsEditController)
 
-  TripsListController.$inject = ['TripsResource'];
+  TripsListController.$inject = ['TripsResource', 'authService'];
   TripsNewController.$inject = ['TripsResource', '$state'];
-  TripsShowController.$inject = ['TripsResource', '$stateParams'];
+  TripsShowController.$inject = ['TripsResource', '$stateParams', '$state'];
   TripsEditController.$inject = ['TripsResource', '$state', '$stateParams'];
 
-  function TripsListController(TripsResource) {
+  function TripsListController(TripsResource, authService) {
     var vm = this;
     vm.trips = [];
-    vm.deleteTrip = deleteTrip;
+    vm.currentUser = authService.currentUser();
 
     TripsResource.get().$promise.then(function(data) {
-      console.log(data.trips);
       vm.trips = data.trips;
     });
-
-    function deleteTrip(tripToDelete) {
-      TripsResource.delete({id: tripToDelete._id}).$promise.then(function(response) {
-        if(response.message) {
-          console.log(response.message);
-          vm.trips = vm.trips.filter(function(trip) {
-            return trip != tripToDelete;
-          });
-        }
-      });
-    }
   }
 
   function TripsNewController(TripsResource, $state) {
@@ -40,7 +28,10 @@
     vm.addTrip = addTrip;
 
     function addTrip() {
-      vm.newTrip.bookmarks = vm.newTrip.bookmarks.split(',');
+      if(vm.newTrip.bookmarks && typeof vm.newTrip.bookmarks === 'string') {
+        vm.newTrip.bookmarks = vm.newTrip.bookmarks.split(',');
+      }
+
       TripsResource.save(vm.newTrip).$promise.then(function(jsonTrip) {
         vm.newTrip = {};
         $state.go('tripsIndex');
@@ -48,13 +39,23 @@
     }
   }
 
-  function TripsShowController(TripsResource, $stateParams) {
+  function TripsShowController(TripsResource, $stateParams, $state) {
     var vm = this;
     vm.trip = {};
+    vm.deleteTrip = deleteTrip;
 
     TripsResource.get({id: $stateParams.id}).$promise.then(function(jsonTrip) {
       vm.trip = jsonTrip;
     });
+
+    function deleteTrip() {
+      TripsResource.delete({id: $stateParams.id}).$promise.then(function(response) {
+        if(response.message) {
+          console.log(response.message);
+        }
+      });
+      $state.go('tripsIndex');
+    }
   }
 
   function TripsEditController(TripsResource, $state, $stateParams) {
@@ -67,10 +68,10 @@
     });
 
     function updateTrip() {
-      if(typeof vm.trip.bookmarks === 'string') {
+      if(vm.trip.bookmarks && typeof vm.trip.bookmarks === 'string') {
         vm.trip.bookmarks = vm.trip.bookmarks.split(',');
       }
-      console.log(vm.trip.location)
+
       TripsResource.update(vm.trip).$promise.then(function(editedTrip) {
         vm.trip = editedTrip;
         $state.go('tripsIndex');

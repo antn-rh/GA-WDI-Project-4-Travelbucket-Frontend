@@ -1,8 +1,10 @@
 This is the page to create a new trip.
+<br>
 
-<!-- allow users to input multiple bookmarks -->
+<a ui-sref="tripsIndex">My Trips</a>
 
 <form ng-submit="tripNewVm.addTrip()">
+  <br>
   <div>
     <label for="location">Location: </label>
     <input type="text" ng-model="tripNewVm.newTrip.location">
