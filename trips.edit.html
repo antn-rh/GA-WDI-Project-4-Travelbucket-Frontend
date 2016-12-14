@@ -1,7 +1,5 @@
 This is the page to edit an individual trip.
 
-<!-- the edit button redirects but the changes don't go through. also make edit form show previous stuff-->
-
 <br>
 <a ui-sref="tripsIndex">Back to Trips</a>
 
@@ -9,55 +7,55 @@ This is the page to edit an individual trip.
   <br>
   <div>
     <label for="location">Location: </label>
-    <input type="text" ng-model="tripEditVm.location">
+    <input type="text" ng-model="tripEditVm.trip.location">
   </div>
   <div>
     <label for="startDate">Start Date: </label>
-    <input type="text" ng-model="tripEditVm.startDate">
+    <input type="text" ng-model="tripEditVm.trip.startDate">
   </div>
   <div>
     <label for="endDate">End Date: </label>
-    <input type="text" ng-model="tripEditVm.endDate">
+    <input type="text" ng-model="tripEditVm.trip.endDate">
   </div>
   <div>
     <label for="departOrigin">Departing Flight Origin: </label>
-    <input type="text" ng-model="tripEditVm.departingFlight.origin">
+    <input type="text" ng-model="tripEditVm.trip.departingFlight.origin">
   </div>
   <div>
     <label for="departDestination">Departing Flight Destination: </label>
-    <input type="text" ng-model="tripEditVm.departingFlight.destination">
+    <input type="text" ng-model="tripEditVm.trip.departingFlight.destination">
   </div>
   <div>
     <label for="departTime">Time of Departing Flight: </label>
-    <input type="text" ng-model="tripEditVm.departingFlight.departureTime">
+    <input type="text" ng-model="tripEditVm.trip.departingFlight.departureTime">
   </div>
   <div>
     <label for="departDuration">Departing Flight Duration: </label>
-    <input type="text" ng-model="tripEditVm.departingFlight.duration">
+    <input type="text" ng-model="tripEditVm.trip.departingFlight.duration">
   </div>
   <div>
     <label for="returnOrigin">Return Flight Origin: </label>
-    <input type="text" ng-model="tripEditVm.returnFlight.origin">
+    <input type="text" ng-model="tripEditVm.trip.returnFlight.origin">
   </div>
   <div>
     <label for="returnDestination">Return Flight Destination: </label>
-    <input type="text" ng-model="tripEditVm.returnFlight.destination">
+    <input type="text" ng-model="tripEditVm.trip.returnFlight.destination">
   </div>
   <div>
     <label for="returnTime">Time of Return Flight: </label>
-    <input type="text" ng-model="tripEditVm.returnFlight.departureTime">
+    <input type="text" ng-model="tripEditVm.trip.returnFlight.departureTime">
   </div>
   <div>
     <label for="returnDuration">Return Flight Duration: </label>
-    <input type="text" ng-model="tripEditVm.returnFlight.duration">
+    <input type="text" ng-model="tripEditVm.trip.returnFlight.duration">
   </div>
   <div>
     <label for="lodgingAddress">Lodging Address</label>
-    <input type="text" ng-model="tripEditVm.lodgingAddress">
+    <input type="text" ng-model="tripEditVm.trip.lodgingAddress">
   </div>
   <div>
     <label for="bookmarks">Bookmarks</label>
-    <input type="text" ng-model="tripEditVm.bookmarks">
+    <input type="text" ng-model="tripEditVm.trip.bookmarks">
   </div>
   <div>
     <input type="submit" value="Edit Trip">

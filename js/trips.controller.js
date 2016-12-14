@@ -40,6 +40,7 @@
     vm.addTrip = addTrip;
 
     function addTrip() {
+      vm.newTrip.bookmarks = vm.newTrip.bookmarks.split(',');
       TripsResource.save(vm.newTrip).$promise.then(function(jsonTrip) {
         vm.newTrip = {};
         $state.go('tripsIndex');
@@ -59,13 +60,14 @@
   function TripsEditController(TripsResource, $state, $stateParams) {
     var vm = this;
     vm.trip = {};
-    vm.updateTrip = updateTrip
+    vm.updateTrip = updateTrip;
 
     TripsResource.get({id: $stateParams.id}).$promise.then(function(jsonTrip) {
       vm.trip = jsonTrip;
     });
 
     function updateTrip() {
+      console.log(vm.trip.location)
       TripsResource.update(vm.trip).$promise.then(function(editedTrip) {
         vm.trip = editedTrip;
         $state.go('tripsIndex');
