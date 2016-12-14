@@ -1,1 +1,62 @@
-This is the page to edit an individual trip. 
+This is the page to edit an individual trip.
+<br>
+<a ui-sref="tripsIndex">Back to Trips</a>
+
+<form ng-submit="tripEditVm.updateTrip()">
+  <br>
+  <div>
+    <label for="location">Location: </label>
+    <input type="text" ng-model="tripEditVm.location">
+  </div>
+  <div>
+    <label for="startDate">Start Date: </label>
+    <input type="text" ng-model="tripEditVm.startDate">
+  </div>
+  <div>
+    <label for="endDate">End Date: </label>
+    <input type="text" ng-model="tripEditVm.endDate">
+  </div>
+  <div>
+    <label for="departOrigin">Departing Flight Origin: </label>
+    <input type="text" ng-model="tripEditVm.departingFlight.origin">
+  </div>
+  <div>
+    <label for="departDestination">Departing Flight Destination: </label>
+    <input type="text" ng-model="tripEditVm.departingFlight.destination">
+  </div>
+  <div>
+    <label for="departTime">Time of Departing Flight: </label>
+    <input type="text" ng-model="tripEditVm.departingFlight.departureTime">
+  </div>
+  <div>
+    <label for="departDuration">Departing Flight Duration: </label>
+    <input type="text" ng-model="tripEditVm.departingFlight.duration">
+  </div>
+  <div>
+    <label for="returnOrigin">Return Flight Origin: </label>
+    <input type="text" ng-model="tripEditVm.returnFlight.origin">
+  </div>
+  <div>
+    <label for="returnDestination">Return Flight Destination: </label>
+    <input type="text" ng-model="tripEditVm.returnFlight.destination">
+  </div>
+  <div>
+    <label for="returnTime">Time of Return Flight: </label>
+    <input type="text" ng-model="tripEditVm.returnFlight.departureTime">
+  </div>
+  <div>
+    <label for="returnDuration">Return Flight Duration: </label>
+    <input type="text" ng-model="tripEditVm.returnFlight.duration">
+  </div>
+  <div>
+    <label for="lodgingAddress">Lodging Address</label>
+    <input type="text" ng-model="tripEditVm.lodgingAddress">
+  </div>
+  <div>
+    <label for="bookmarks">Bookmarks</label>
+    <input type="text" ng-model="tripEditVm.bookmarks">
+  </div>
+  <div>
+    <input type="submit" value="Edit Trip">
+  </div>
+</form>
