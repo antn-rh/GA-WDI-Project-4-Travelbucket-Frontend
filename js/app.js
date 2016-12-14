@@ -4,6 +4,15 @@
     .module('Travelbucket', ['ui.router', 'satellizer', 'ngResource'])
     .config(TripRouter)
     .config(AuthProvider)
+    .run(function ($rootScope, $state, authService) {
+      $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams){
+        // if user isn’t authenticated...
+        if (toState.authenticate && !authService.isLoggedIn()){
+          $state.transitionTo('index');
+          event.preventDefault();
+        }
+      });
+    });
 
   AuthProvider.$inject = ['$authProvider'];
 
@@ -13,37 +22,43 @@
     $stateProvider
       .state('index', {
         url: '/',
-        templateUrl: 'landing.html'
+        templateUrl: 'landing.html',
+        authenticate: false
       })
       .state('signin', {
         url: '/signin',
         templateUrl: 'signin.html',
         controller: 'SignInController',
-        controllerAs: 'vm'
+        controllerAs: 'vm',
+        authenticate: false
       })
       .state('tripsIndex', {
         url: '/trips',
         templateUrl: 'trips.index.html',
         controller: 'TripsListController',
-        controllerAs: 'tripListVm'
+        controllerAs: 'tripListVm',
+        authenticate: true
       })
       .state('tripsNew', {
         url: '/trips/new',
         templateUrl: 'trips.new.html',
         controller: 'TripsNewController',
-        controllerAs: 'tripNewVm'
+        controllerAs: 'tripNewVm',
+        authenticate: true
       })
       .state('tripsShow', {
         url: '/trips/show/:id',
         templateUrl: 'trips.show.html',
         controller: 'TripsShowController',
-        controllerAs: 'tripShowVm'
+        controllerAs: 'tripShowVm',
+        authenticate: true
       })
       .state('tripsEdit', {
         url: '/trips/edit/:id',
         templateUrl: 'trips.edit.html',
         controller: 'TripsEditController',
-        controllerAs: 'tripEditVm'
+        controllerAs: 'tripEditVm',
+        authenticate: true
       });
   }
   // there is an issue where sign in with Google button redirects before authenticating
