@@ -1,5 +1,8 @@
 This is where all of my trips will show up.
 
+<!-- trips are currently not associated with specific users  -->
+<!-- authorization is not implemented -->
+
 <ul>
   <li ng-repeat="trip in tripListVm.trips">
     <a ui-sref="tripsShow({id: trip._id})">{{trip.location}}</a>, {{trip.startDate | date: 'MM/dd/yy'}} - {{trip.endDate | date: 'MM/dd/yy'}}
