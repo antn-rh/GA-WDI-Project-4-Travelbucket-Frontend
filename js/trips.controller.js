@@ -67,6 +67,9 @@
     });
 
     function updateTrip() {
+      if(typeof vm.trip.bookmarks === 'string') {
+        vm.trip.bookmarks = vm.trip.bookmarks.split(',');
+      }
       console.log(vm.trip.location)
       TripsResource.update(vm.trip).$promise.then(function(editedTrip) {
         vm.trip = editedTrip;
