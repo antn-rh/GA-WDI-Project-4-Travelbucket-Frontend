@@ -3,7 +3,9 @@ This is the page to show an individual trip.
 <a ui-sref="tripsIndex">Back to Trips</a>
 <br>
 
-<ng-map center="[40.74, -74.18]"></ng-map>
+<ng-map center="[{{tripShowVm.trip.latitude}}, {{tripShowVm.trip.longitude}}]" zoom="12">
+  <marker position="[{{tripShowVm.trip.latitude}}, {{tripShowVm.trip.longitude}}]" title="{{tripShowVm.trip.location}}"></marker>
+</ng-map>
 
 <div>
   <h1><u>{{tripShowVm.trip.location}}</u></h1>

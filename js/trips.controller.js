@@ -46,6 +46,7 @@
 
     TripsResource.get({id: $stateParams.id}).$promise.then(function(jsonTrip) {
       vm.trip = jsonTrip;
+      console.log(vm.trip);
     });
 
     function deleteTrip() {
