@@ -78,13 +78,13 @@
         vm.searchResults = [];
         console.log(response.data)
         for(var i = 0; i < response.data.businesses.length; i++) {
-          if(
-            response.data.businesses[i].name.toLowerCase().includes(vm.searchTerm.toLowerCase()) ||
-            response.data.businesses[i].categories[0].title.toLowerCase().includes(vm.searchTerm.toLowerCase()) ||
-            response.data.businesses[i].location.address1.toLowerCase().includes(vm.searchTerm.toLowerCase())
-            ) {
-            vm.searchResults.push(response.data.businesses[i].coordinates);
-          }
+          // if(
+          //   response.data.businesses[i].name.toLowerCase().includes(vm.searchTerm.toLowerCase()) ||
+          //   response.data.businesses[i].categories[0].title.toLowerCase().includes(vm.searchTerm.toLowerCase()) ||
+          //   response.data.businesses[i].location.address1.toLowerCase().includes(vm.searchTerm.toLowerCase())
+          //   ) {
+            vm.searchResults.push(response.data.businesses[i]);
+          // }
         }
       });
     }
@@ -93,12 +93,19 @@
       vm.map = map;
     });
 
-    function pinClicked(e, trip) {
-      vm.map.showInfoWindow('location', 'test-marker');
+    function pinClicked(e, searchQuery) {
+      vm.windowContent = searchQuery;
+      vm.map.showInfoWindow('resultPin', searchQuery.id);
     };
 
     function infoWindow() {
-      return $sce.trustAsHtml("<h2>" + vm.trip.location + "</h2>");
+      return $sce.trustAsHtml(
+        '<h2>' + vm.windowContent.name + '</h2>' +
+        '<p>' + 'Category: ' + vm.windowContent.categories[0].title + '</p>' +
+        '<p>' + vm.windowContent.location.address1 + ' ' + vm.windowContent.location.city + ', ' + vm.windowContent.location.state + ' ' + vm.windowContent.location.zip_code + '</p>' +
+        '<p>' + vm.windowContent.price + ', ' + vm.windowContent.rating+ ' &#9734, ' + 'Reviews: ' + vm.windowContent.review_count + '</p>' +
+        '<p>' + `<a href=${vm.windowContent.url} target="_blank">Yelp Link</a>` + '</p>'
+      );
     }
   }
 
