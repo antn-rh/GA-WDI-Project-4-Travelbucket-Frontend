@@ -9,7 +9,7 @@
 
   TripsListController.$inject = ['TripsResource', 'authService'];
   TripsNewController.$inject = ['TripsResource', '$state'];
-  TripsShowController.$inject = ['TripsResource', '$stateParams', '$state', '$http'];
+  TripsShowController.$inject = ['TripsResource', '$stateParams', '$state', '$http', 'NgMap', '$sce'];
   TripsEditController.$inject = ['TripsResource', '$state', '$stateParams'];
 
   function TripsListController(TripsResource, authService) {
@@ -39,13 +39,15 @@
     }
   }
 
-  function TripsShowController(TripsResource, $stateParams, $state, $http) {
+  function TripsShowController(TripsResource, $stateParams, $state, $http, NgMap, $sce) {
     var vm = this;
     vm.trip = {};
     vm.deleteTrip = deleteTrip;
     vm.getYelp = getYelp;
     // vm.searchResults is an array of coordinates based on a search
     vm.searchResults = [];
+    vm.pinClicked = pinClicked;
+    vm.infoWindow = infoWindow;
 
     TripsResource.get({id: $stateParams.id}).$promise.then(function(jsonTrip) {
       vm.trip = jsonTrip;
@@ -79,6 +81,21 @@
         }
       });
     }
+
+    NgMap.getMap().then(function(map) {
+      vm.map = map;
+    });
+
+    // function pinClicked(e, trip) {
+    //   console.log('clicked!');
+    //   vm.trip = trip;
+    //   console.log(trip);
+    //   vm.map.showInfoWindow('location', trip._id);
+    // };
+    //
+    // function infoWindow() {
+    //   return $sce.trustAsHtml("<h2>" + vm.trip.location + "</h2>");
+    // }
   }
 
   function TripsEditController(TripsResource, $state, $stateParams) {
