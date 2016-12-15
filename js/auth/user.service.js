@@ -17,7 +17,7 @@
     function create(data) {
       var promise = $http({
         method: 'POST',
-        url: 'http://localhost:3000/api/users',
+        url: 'https://travelbucket-api.herokuapp.com/api/users',
         data: data
       });
       return promise;

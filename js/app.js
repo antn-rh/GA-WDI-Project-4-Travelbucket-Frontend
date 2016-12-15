@@ -66,7 +66,7 @@
   function AuthProvider($authProvider) {
     $authProvider.google({
       clientId: '1055578100655-vov0la7q2vr9acqesmj5dvb5t9fv14tp.apps.googleusercontent.com',
-      url: 'http://localhost:3000/auth/google'
+      url: 'https://travelbucket-api.herokuapp.com/auth/google'
     });
   }
 }());
