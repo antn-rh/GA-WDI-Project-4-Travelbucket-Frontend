@@ -12,6 +12,7 @@ This is the page to show an individual trip.
 
 <ng-map center="[{{tripShowVm.trip.latitude}}, {{tripShowVm.trip.longitude}}]" zoom="12">
   <marker position="[{{tripShowVm.trip.latitude}}, {{tripShowVm.trip.longitude}}]" title="{{tripShowVm.trip.location}}"></marker>
+  <marker ng-repeat="result in tripShowVm.searchResults" position="[{{result.latitude}}, {{result.longitude}}]"></marker>
 </ng-map>
 
 <div>

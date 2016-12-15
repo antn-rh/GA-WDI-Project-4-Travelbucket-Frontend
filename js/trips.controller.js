@@ -44,6 +44,8 @@
     vm.trip = {};
     vm.deleteTrip = deleteTrip;
     vm.getYelp = getYelp;
+    // vm.searchResults is an array of coordinates based on a search
+    vm.searchResults = [];
 
     TripsResource.get({id: $stateParams.id}).$promise.then(function(jsonTrip) {
       vm.trip = jsonTrip;
@@ -60,10 +62,6 @@
     }
 
     function getYelp() {
-      console.log('clicked!')
-      console.log(vm.searchTerm)
-      console.log(vm.trip.latitude)
-      console.log(vm.trip.longitude)
       $http({
         method: 'POST',
         // change this url when you deploy
@@ -73,9 +71,12 @@
           latitude: vm.trip.latitude,
           longitude: vm.trip.longitude
         }
-      }).then(function(data) {
+      }).then(function(response) {
         // set vm.searchresponse = data.something then make marker
-        console.log(data);
+        vm.searchResults = [];
+        for(var i = 0; i < response.data.businesses.length; i++) {
+          vm.searchResults.push(response.data.businesses[i].coordinates)
+        }
       });
     }
   }
