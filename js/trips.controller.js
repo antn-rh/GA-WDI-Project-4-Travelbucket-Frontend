@@ -67,7 +67,7 @@
       $http({
         method: 'POST',
         // change this url when you deploy
-        url: 'http://localhost:3000/api/yelp',
+        url: 'https://travelbucket-api.herokuapp.com/api/yelp',
         data: {
           searchTerm: vm.searchTerm,
           latitude: vm.trip.latitude,
