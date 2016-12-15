@@ -11,7 +11,7 @@ This is the page to show an individual trip.
 </form>
 
 <ng-map center="[{{tripShowVm.trip.latitude}}, {{tripShowVm.trip.longitude}}]" zoom="12">
-  <marker position="[{{tripShowVm.trip.latitude}}, {{tripShowVm.trip.longitude}}]" title="{{tripShowVm.trip.location}}" on-click="tripShowVm.pinClicked(trip)"></marker>
+  <marker id="test-marker" position="[{{tripShowVm.trip.latitude}}, {{tripShowVm.trip.longitude}}]" title="{{tripShowVm.trip.location}}" on-click="tripShowVm.pinClicked(trip)"></marker>
   <marker ng-repeat="result in tripShowVm.searchResults" position="[{{result.latitude}}, {{result.longitude}}]"></marker>
 
   <info-window id="location">

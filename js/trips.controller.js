@@ -76,8 +76,15 @@
       }).then(function(response) {
         // set vm.searchresponse = data.something then make marker
         vm.searchResults = [];
+        console.log(response.data)
         for(var i = 0; i < response.data.businesses.length; i++) {
-          vm.searchResults.push(response.data.businesses[i].coordinates)
+          if(
+            response.data.businesses[i].name.toLowerCase().includes(vm.searchTerm.toLowerCase()) ||
+            response.data.businesses[i].categories[0].title.toLowerCase().includes(vm.searchTerm.toLowerCase()) ||
+            response.data.businesses[i].location.address1.toLowerCase().includes(vm.searchTerm.toLowerCase())
+            ) {
+            vm.searchResults.push(response.data.businesses[i].coordinates);
+          }
         }
       });
     }
@@ -86,16 +93,13 @@
       vm.map = map;
     });
 
-    // function pinClicked(e, trip) {
-    //   console.log('clicked!');
-    //   vm.trip = trip;
-    //   console.log(trip);
-    //   vm.map.showInfoWindow('location', trip._id);
-    // };
-    //
-    // function infoWindow() {
-    //   return $sce.trustAsHtml("<h2>" + vm.trip.location + "</h2>");
-    // }
+    function pinClicked(e, trip) {
+      vm.map.showInfoWindow('location', 'test-marker');
+    };
+
+    function infoWindow() {
+      return $sce.trustAsHtml("<h2>" + vm.trip.location + "</h2>");
+    }
   }
 
   function TripsEditController(TripsResource, $state, $stateParams) {
