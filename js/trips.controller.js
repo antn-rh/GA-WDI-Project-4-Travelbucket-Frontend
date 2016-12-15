@@ -9,7 +9,7 @@
 
   TripsListController.$inject = ['TripsResource', 'authService'];
   TripsNewController.$inject = ['TripsResource', '$state'];
-  TripsShowController.$inject = ['TripsResource', '$stateParams', '$state'];
+  TripsShowController.$inject = ['TripsResource', '$stateParams', '$state', '$http', 'NgMap', '$sce'];
   TripsEditController.$inject = ['TripsResource', '$state', '$stateParams'];
 
   function TripsListController(TripsResource, authService) {
@@ -39,13 +39,19 @@
     }
   }
 
-  function TripsShowController(TripsResource, $stateParams, $state) {
+  function TripsShowController(TripsResource, $stateParams, $state, $http, NgMap, $sce) {
     var vm = this;
     vm.trip = {};
     vm.deleteTrip = deleteTrip;
+    vm.getYelp = getYelp;
+    // vm.searchResults is an array of coordinates based on a search
+    vm.searchResults = [];
+    vm.pinClicked = pinClicked;
+    vm.infoWindow = infoWindow;
 
     TripsResource.get({id: $stateParams.id}).$promise.then(function(jsonTrip) {
       vm.trip = jsonTrip;
+      console.log(vm.trip);
     });
 
     function deleteTrip() {
@@ -56,6 +62,40 @@
       });
       $state.go('tripsIndex');
     }
+
+    function getYelp() {
+      $http({
+        method: 'POST',
+        // change this url when you deploy
+        url: 'http://localhost:3000/api/yelp',
+        data: {
+          searchTerm: vm.searchTerm,
+          latitude: vm.trip.latitude,
+          longitude: vm.trip.longitude
+        }
+      }).then(function(response) {
+        // set vm.searchresponse = data.something then make marker
+        vm.searchResults = [];
+        for(var i = 0; i < response.data.businesses.length; i++) {
+          vm.searchResults.push(response.data.businesses[i].coordinates)
+        }
+      });
+    }
+
+    NgMap.getMap().then(function(map) {
+      vm.map = map;
+    });
+
+    // function pinClicked(e, trip) {
+    //   console.log('clicked!');
+    //   vm.trip = trip;
+    //   console.log(trip);
+    //   vm.map.showInfoWindow('location', trip._id);
+    // };
+    //
+    // function infoWindow() {
+    //   return $sce.trustAsHtml("<h2>" + vm.trip.location + "</h2>");
+    // }
   }
 
   function TripsEditController(TripsResource, $state, $stateParams) {
