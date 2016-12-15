@@ -1,7 +1,7 @@
 (function() {
   'use strict';
   angular
-    .module('Travelbucket', ['ui.router', 'satellizer', 'ngResource'])
+    .module('Travelbucket', ['ui.router', 'satellizer', 'ngResource', 'ngMap'])
     .config(TripRouter)
     .config(AuthProvider)
     .run(function ($rootScope, $state, authService) {
