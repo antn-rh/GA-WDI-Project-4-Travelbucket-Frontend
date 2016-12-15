@@ -3,6 +3,13 @@ This is the page to show an individual trip.
 <a ui-sref="tripsIndex">Back to Trips</a>
 <br>
 
+<form ng-submit="tripShowVm.getYelp()">
+  <div>
+    <input type="text" ng-model="tripShowVm.searchTerm">
+    <input type="submit" value="Search">
+  </div>
+</form>
+
 <ng-map center="[{{tripShowVm.trip.latitude}}, {{tripShowVm.trip.longitude}}]" zoom="12">
   <marker position="[{{tripShowVm.trip.latitude}}, {{tripShowVm.trip.longitude}}]" title="{{tripShowVm.trip.location}}"></marker>
 </ng-map>

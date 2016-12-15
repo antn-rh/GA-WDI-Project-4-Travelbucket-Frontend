@@ -9,7 +9,7 @@
 
   TripsListController.$inject = ['TripsResource', 'authService'];
   TripsNewController.$inject = ['TripsResource', '$state'];
-  TripsShowController.$inject = ['TripsResource', '$stateParams', '$state'];
+  TripsShowController.$inject = ['TripsResource', '$stateParams', '$state', '$http'];
   TripsEditController.$inject = ['TripsResource', '$state', '$stateParams'];
 
   function TripsListController(TripsResource, authService) {
@@ -39,10 +39,11 @@
     }
   }
 
-  function TripsShowController(TripsResource, $stateParams, $state) {
+  function TripsShowController(TripsResource, $stateParams, $state, $http) {
     var vm = this;
     vm.trip = {};
     vm.deleteTrip = deleteTrip;
+    vm.getYelp = getYelp;
 
     TripsResource.get({id: $stateParams.id}).$promise.then(function(jsonTrip) {
       vm.trip = jsonTrip;
@@ -56,6 +57,26 @@
         }
       });
       $state.go('tripsIndex');
+    }
+
+    function getYelp() {
+      console.log('clicked!')
+      console.log(vm.searchTerm)
+      console.log(vm.trip.latitude)
+      console.log(vm.trip.longitude)
+      $http({
+        method: 'POST',
+        // change this url when you deploy
+        url: 'http://localhost:3000/api/yelp',
+        data: {
+          searchTerm: vm.searchTerm,
+          latitude: vm.trip.latitude,
+          longitude: vm.trip.longitude
+        }
+      }).then(function(data) {
+        // set vm.searchresponse = data.something then make marker
+        console.log(data);
+      });
     }
   }
 
