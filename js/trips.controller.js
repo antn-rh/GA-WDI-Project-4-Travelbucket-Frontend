@@ -88,7 +88,6 @@
       });
     }
 
-    console.log('i shoudl be running! ')
     NgMap.getMap({id: 'google-map'}).then(function(map) {
       vm.map = map;
     });
