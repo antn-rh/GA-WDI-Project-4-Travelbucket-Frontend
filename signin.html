@@ -1,16 +1,23 @@
 <div class="sign-in-form" ng-hide="vm.toggleValue">
   <h1>Sign In</h1>
 
-  <form ng-submit="vm.submitLogIn();" name="signInForm" novalidate>
-    <div>
-      <label for="exampleInputEmail1">Email address</label>
+  <form name="colorForm" ng-submit="vm.submitLogIn()">
+    <md-input-container>
+      <label>Email Address</label>
       <input ng-model="vm.logIn.email" type="email" ng-model="email" name="email" required id="exampleInputEmail1" placeholder="Email">
-    </div>
-    <div>
+      <div ng-messages="colorForm.favoriteColor.$error">
+        <div ng-message="required">This is required!</div>
+      </div>
+    </md-input-container>
+    <md-input-container>
       <label for="exampleInputPassword1">Password</label>
       <input ng-model="vm.logIn.password" type="password" ng-model="password" name="password" required id="exampleInputPassword1" placeholder="Password">
-    </div>
-    <button type="submit" ng-disabled="signInForm.$invalid">Submit</button>
+      <div ng-messages="colorForm.favoriteColor.$error">
+        <div ng-message="required">This is required!</div>
+      </div>
+    </md-input-container>
+    <br>
+    <md-button class="md-primary" type="submit" ng-disabled="signInForm.$invalid">Submit</button>
   </form>
 
   <p>
@@ -21,28 +28,48 @@
   </p>
 </div> <!-- sign-in-form -->
 
+
+
+
+
+
+
 <div class="sign-up-form" ng-show="vm.toggleValue">
   <h1>Sign Up</h1>
 
-  <form ng-submit="vm.submitSignUp();">
-    <div>
+  <form name="colorForm" ng-submit="vm.submitSignUp()">
+    <md-input-container>
       <label for="exampleInputEmail1">Email address</label>
       <input ng-model="vm.signUp.email" type="email" ng-class="{'red-border': vm.conflict}" class="form-control" id="exampleInputEmail1" placeholder="Email">
       <small ng-show="vm.conflict"><em>Email exists…</em></small>
-    </div>
-    <div>
+      <div ng-messages="colorForm.favoriteColor.$error">
+        <div ng-message="required">This is required!</div>
+      </div>
+    </md-input-container>
+    <md-input-container>
       <label for="exampleInputName">Name</label>
       <input ng-model="vm.signUp.name" type="text" id="exampleInputName" placeholder="Name">
-    </div>
-    <div>
+      <div ng-messages="colorForm.favoriteColor.$error">
+        <div ng-message="required">This is required!</div>
+      </div>
+    </md-input-container>
+    <br>
+    <md-input-container>
       <label for="exampleInputPassword1">Password</label>
       <input ng-model="vm.signUp.password" type="password" id="exampleInputPassword1" placeholder="Password">
-    </div>
-    <div>
+      <div ng-messages="colorForm.favoriteColor.$error">
+        <div ng-message="required">This is required!</div>
+      </div>
+    </md-input-container>
+    <md-input-container>
       <label for="exampleInputPassword2">Password confirmation</label>
       <input ng-model="vm.signUp.passwordConfirmation" type="password" id="exampleInputPassword2" placeholder="Password">
-    </div>
-    <button type="submit">Submit</button>
+      <div ng-messages="colorForm.favoriteColor.$error">
+        <div ng-message="required">This is required!</div>
+      </div>
+    </md-input-container>
+    <br>
+    <md-button class="md-primary" type="submit">Submit</button>
   </form>
 
   <p>
@@ -54,6 +81,6 @@
 
 </div> <!-- sign-up-form -->
 
-<div>
-  <button ng-click="vm.authenticate('google')">Sign In with Google</button>
+<div class="google-sign-in">
+  <md-button class="md-primary" ng-click="vm.authenticate('google')">Sign In with Google</button>
 </div>

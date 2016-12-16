@@ -2,20 +2,28 @@
 <html>
 <head>
   <title>Travelbucket</title>
+  <link href="https://fonts.googleapis.com/css?family=Inconsolata" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body ng-app='Travelbucket' ng-cloak>
   <header ng-controller="NavbarController as vm">
-    <nav>
-      <div>
-        <p ng-show="vm.authService.isLoggedIn()">{{vm.userName}}</p>
-        <button ng-hide="vm.authService.isLoggedIn()" ui-sref="signin" type="button">Sign in</button>
-        <button ng-show="vm.authService.isLoggedIn()" ng-click="vm.authService.logOut()" type="button">Sign out</button>
-      </div>
-    </nav>
+
+    <md-nav-bar md-selected-nav-item="currentNavItem">
+      <md-nav-item md-nav-sref="tripsIndex">Travelbucket</md-nav-item>
+      <md-nav-item md-nav-sref="tripsIndex" ng-show="vm.authService.isLoggedIn()">My Trips</md-nav-item>
+      <md-nav-item md-nav-sref="tripsNew" ng-show="vm.authService.isLoggedIn()">New Trip</md-nav-item>
+
+      <span flex=100> </span>
+      <md-nav-item md-nav-sref="tripsIndex" ng-show="vm.authService.isLoggedIn()">{{vm.userName}}</md-nav-item>
+      <md-button class="md-primary md-hue-2" ng-hide="vm.authService.isLoggedIn()" ui-sref="signin" type="button">Sign in</md-button>
+      <span flex> </span>
+      <md-button class="md-warn md-hue-2" ng-show="vm.authService.isLoggedIn()" ng-click="vm.authService.logOut()" type="button">Sign out</md-button>
+    </md-nav-bar>
+
   </header>
 
-  <h1>Travelbucket</h1>
+  <!-- <md-calendar ng-model="birthday"></md-calendar> -->
 
   <section ui-view></section>
   <script src="js/auth/jwt-decode.2.0.1.js"></script>
