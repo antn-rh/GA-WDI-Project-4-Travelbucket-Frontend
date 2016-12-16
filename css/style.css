@@ -6,7 +6,7 @@ body {
   font-family: 'Inconsolata', monospace;
 }
 
-.sign-in-form, .sign-up-form {
+.sign-in-form, .sign-up-form, .new-trip-form, .edit-trip-form {
   margin: 3rem;
 }
 

@@ -1,63 +1,63 @@
-This is the page to edit an individual trip.
-
-<br>
-<a ui-sref="tripsIndex">Back to Trips</a>
-
-<form ng-submit="tripEditVm.updateTrip()">
-  <br>
-  <div>
-    <label for="location">Location: </label>
-    <input type="text" ng-model="tripEditVm.trip.location">
-  </div>
-  <div>
-    <label for="startDate">Start Date: </label>
-    <input type="text" ng-model="tripEditVm.trip.startDate">
-  </div>
-  <div>
-    <label for="endDate">End Date: </label>
-    <input type="text" ng-model="tripEditVm.trip.endDate">
-  </div>
-  <div>
-    <label for="departOrigin">Departing Flight Origin: </label>
-    <input type="text" ng-model="tripEditVm.trip.departingFlight.origin">
-  </div>
-  <div>
-    <label for="departDestination">Departing Flight Destination: </label>
-    <input type="text" ng-model="tripEditVm.trip.departingFlight.destination">
-  </div>
-  <div>
-    <label for="departTime">Time of Departing Flight: </label>
-    <input type="text" ng-model="tripEditVm.trip.departingFlight.departureTime">
-  </div>
-  <div>
-    <label for="departDuration">Departing Flight Duration: </label>
-    <input type="text" ng-model="tripEditVm.trip.departingFlight.duration">
-  </div>
-  <div>
-    <label for="returnOrigin">Return Flight Origin: </label>
-    <input type="text" ng-model="tripEditVm.trip.returnFlight.origin">
-  </div>
-  <div>
-    <label for="returnDestination">Return Flight Destination: </label>
-    <input type="text" ng-model="tripEditVm.trip.returnFlight.destination">
-  </div>
-  <div>
-    <label for="returnTime">Time of Return Flight: </label>
-    <input type="text" ng-model="tripEditVm.trip.returnFlight.departureTime">
-  </div>
-  <div>
-    <label for="returnDuration">Return Flight Duration: </label>
-    <input type="text" ng-model="tripEditVm.trip.returnFlight.duration">
-  </div>
-  <div>
-    <label for="lodgingAddress">Lodging Address</label>
-    <input type="text" ng-model="tripEditVm.trip.lodgingAddress">
-  </div>
-  <div>
-    <label for="bookmarks">Bookmarks</label>
-    <input type="text" ng-model="tripEditVm.trip.bookmarks">
-  </div>
-  <div>
-    <input type="submit" value="Edit Trip">
-  </div>
-</form>
+<div class="edit-trip-form">
+  <form name="colorForm" ng-submit="tripEditVm.updateTrip()">
+    <md-input-container>
+      <label for="location">Location: </label>
+      <input type="text" ng-model="tripEditVm.trip.location" required>
+      <div ng-messages="colorForm.favoriteColor.$error">
+        <div ng-message="required">This is required!</div>
+      </div>
+    </md-input-container>
+    <md-input-container>
+      <label for="startDate">Start Date: </label>
+      <input type="text" ng-model="tripEditVm.trip.startDate">
+    </md-input-container>
+    <md-input-container>
+      <label for="endDate">End Date: </label>
+      <input type="text" ng-model="tripEditVm.trip.endDate">
+    </md-input-container>
+    <br>
+    <md-input-container>
+      <label for="departOrigin">Departing Flight Origin: </label>
+      <input type="text" ng-model="tripEditVm.trip.departingFlight.origin">
+    </md-input-container>
+    <md-input-container>
+      <label for="departDestination">Departing Flight Destination: </label>
+      <input type="text" ng-model="tripEditVm.trip.departingFlight.destination">
+    </md-input-container>
+    <md-input-container>
+      <label for="departTime">Time of Departing Flight: </label>
+      <input type="text" ng-model="tripEditVm.trip.departingFlight.departureTime">
+    </md-input-container>
+    <md-input-container>
+      <label for="departDuration">Departing Flight Duration: </label>
+      <input type="text" ng-model="tripEditVm.trip.departingFlight.duration">
+    </md-input-container>
+    <br>
+    <md-input-container>
+      <label for="returnOrigin">Return Flight Origin: </label>
+      <input type="text" ng-model="tripEditVm.trip.returnFlight.origin">
+    </md-input-container>
+    <md-input-container>
+      <label for="returnDestination">Return Flight Destination: </label>
+      <input type="text" ng-model="tripEditVm.trip.returnFlight.destination">
+    </md-input-container>
+    <md-input-container>
+      <label for="returnTime">Time of Return Flight: </label>
+      <input type="text" ng-model="tripEditVm.trip.returnFlight.departureTime">
+    </md-input-container>
+    <md-input-container>
+      <label for="returnDuration">Return Flight Duration: </label>
+      <input type="text" ng-model="tripEditVm.trip.returnFlight.duration">
+    </md-input-container>
+    <md-input-container>
+      <label for="lodgingAddress">Lodging Address</label>
+      <input type="text" ng-model="tripEditVm.trip.lodgingAddress">
+    </md-input-container>
+    <md-input-container>
+      <label for="bookmarks">Bookmarks</label>
+      <input type="text" ng-model="tripEditVm.trip.bookmarks">
+    </md-input-container>
+    <br>
+    <md-button class="md-primary" type="submit">Submit</button>
+  </form>
+</div>
