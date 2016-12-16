@@ -90,6 +90,7 @@
 
     NgMap.getMap().then(function(map) {
       vm.map = map;
+      console.log(vm.map);
     });
 
     function pinClicked(e, searchQuery) {
