@@ -1,11 +1,9 @@
-This is where all of my trips will show up.
-
 <!-- when a user logs out and different user logs in, the old user's name shows up until page is refreshed -->
 <!-- the app breaks when a trip is made without the origin field  -->
-<ul>
-  <li ng-repeat="trip in tripListVm.trips | filter: {createdBy: tripListVm.currentUser._id}">
-    <a ui-sref="tripsShow({id: trip._id})">{{trip.location}}</a>, {{trip.startDate | date: 'MM/dd/yy'}} - {{trip.endDate | date: 'MM/dd/yy'}}
-  </li>
-</ul>
 
-<a ui-sref="tripsNew">Add New Trip</a>
+<md-card ng-repeat="trip in tripListVm.trips | filter: {createdBy: tripListVm.currentUser._id}">
+ <md-card-content>
+   <h2>{{trip.location}}, {{trip.startDate | date: 'MM/dd/yy'}} - {{trip.endDate | date: 'MM/dd/yy'}}</h2>
+   <p ui-sref="tripsShow({id: trip._id})">Show More</p>
+ </md-card-content>
+</md-card>

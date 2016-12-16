@@ -1,3 +1,30 @@
 [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
   display: none !important;
 }
+
+body {
+  font-family: 'Inconsolata', monospace;
+}
+
+.sign-in-form, .sign-up-form, .new-trip-form, .edit-trip-form {
+  margin: 3rem;
+}
+
+.google-sign-in {
+  margin: 0 0 0 6.5rem;
+}
+
+.left-container, .right-container {
+	float: left;
+	width: 380px;
+	margin: 10px;
+	padding: 10px;
+}
+
+#google-map {
+  max-width: 400px;
+}
+
+#trip-card {
+  margin: 2rem;
+}

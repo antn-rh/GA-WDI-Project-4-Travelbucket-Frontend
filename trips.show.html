@@ -1,57 +1,57 @@
-This is the page to show an individual trip.
-<br>
-<a ui-sref="tripsIndex">Back to Trips</a>
-<br>
-
-<form ng-submit="tripShowVm.getYelp()">
-  <div>
-    <input type="text" ng-model="tripShowVm.searchTerm">
-    <input type="submit" value="Search">
-  </div>
-</form>
-
-<ng-map center="[{{tripShowVm.trip.latitude}}, {{tripShowVm.trip.longitude}}]" zoom="12">
-  <marker ng-repeat="result in tripShowVm.searchResults" position="[{{result.coordinates.latitude}}, {{result.coordinates.longitude}}]" id="{{result.id}}" on-click="tripShowVm.pinClicked(result)"></marker>
-
-  <info-window id="resultPin">
-    <div ng-non-bindable="">
-      <div ng-bind-html="tripShowVm.infoWindow()">
+<md-list-item class="md-2-line">
+  <md-card id="trip-card" class="md-list-item-text" layout="column">
+    <md-card-content>
+      <div class="left-container">
+        <h1><u>{{tripShowVm.trip.location}}</u></h1>
+        Dates: {{tripShowVm.trip.startDate | date: 'MM/dd/yy'}} - {{tripShowVm.trip.endDate | date: 'MM/dd/yy'}}
+        <br>
+        <h2>Departing Flight:</h2>
+        <ul>
+          <li>Origin: {{tripShowVm.trip.departingFlight.origin}}</li>
+          <li>Destination: {{tripShowVm.trip.departingFlight.destination}}</li>
+          <li>Departure Time: {{tripShowVm.trip.departingFlight.departureTime}}</li>
+          <li>Flight Duration: {{tripShowVm.trip.departingFlight.duration}}</li>
+        </ul>
+        <h2>Return Flight:</h2>
+        <ul>
+          <li>Origin: {{tripShowVm.trip.returnFlight.origin}}</li>
+          <li>Destination: {{tripShowVm.trip.returnFlight.destination}}</li>
+          <li>Departure Time: {{tripShowVm.trip.returnFlight.departureTime}}</li>
+          <li>Flight Duration: {{tripShowVm.trip.returnFlight.duration}}</li>
+        </ul>
+        Lodging: {{tripShowVm.trip.lodgingAddress}}
+        <br>
+        <br>
+        Bookmarks:
+        <ul>
+          <li ng-repeat="bookmark in tripShowVm.trip.bookmarks">
+            {{bookmark}}
+          </li>
+        </ul>
+        <br>
+        <md-button class="md-primary" ui-sref="tripsEdit({id: tripShowVm.trip._id})">Edit</md-button>
+        <md-button class="md-warn" ng-click="tripShowVm.deleteTrip(trip)">Delete</md-button>
       </div>
-    </div>
-  </info-window>
-</ng-map>
 
-<div>
-  <h1><u>{{tripShowVm.trip.location}}</u></h1>
-  Dates: {{tripShowVm.trip.startDate | date: 'MM/dd/yy'}} - {{tripShowVm.trip.endDate | date: 'MM/dd/yy'}}
-  <br>
-  <br>
-  Departing Flight:
-  <ul>
-    <li>Origin: {{tripShowVm.trip.departingFlight.origin}}</li>
-    <li>Destination: {{tripShowVm.trip.departingFlight.destination}}</li>
-    <li>Departure Time: {{tripShowVm.trip.departingFlight.departureTime}}</li>
-    <li>Flight Duration: {{tripShowVm.trip.departingFlight.duration}}</li>
-  </ul>
-  <br>
-  Return Flight:
-  <ul>
-    <li>Origin: {{tripShowVm.trip.returnFlight.origin}}</li>
-    <li>Destination: {{tripShowVm.trip.returnFlight.destination}}</li>
-    <li>Departure Time: {{tripShowVm.trip.returnFlight.departureTime}}</li>
-    <li>Flight Duration: {{tripShowVm.trip.returnFlight.duration}}</li>
-  </ul>
-  <br>
-  Lodging: {{tripShowVm.trip.lodgingAddress}}
-  <br>
-  <br>
-  Bookmarks:
-  <ul>
-    <li ng-repeat="bookmark in tripShowVm.trip.bookmarks">
-      {{bookmark}}
-    </li>
-  </ul>
-  <br>
-  <a ui-sref="tripsEdit({id: tripShowVm.trip._id})">Edit</a>
-  <a href="" ng-click="tripShowVm.deleteTrip(trip)">Delete</a>
-</div>
+      <div class="right-container">
+        <form name="colorForm" ng-submit="tripShowVm.getYelp()">
+          <md-input-container>
+            <label>What Are Your Searching For?</label>
+            <input type="text" ng-model="tripShowVm.searchTerm">
+            <md-button type="submit" class="md-primary">Search</md-button>
+          </md-input-container>
+        </form>
+        <ng-map id="google-map" center="[{{tripShowVm.trip.latitude}}, {{tripShowVm.trip.longitude}}]" zoom="12">
+          <marker ng-repeat="result in tripShowVm.searchResults" position="[{{result.coordinates.latitude}}, {{result.coordinates.longitude}}]" id="{{result.id}}" on-click="tripShowVm.pinClicked(result)"></marker>
+          <info-window id="resultPin">
+            <div ng-non-bindable="">
+              <div ng-bind-html="tripShowVm.infoWindow()">
+              </div>
+            </div>
+          </info-window>
+        </ng-map>
+        <!-- <md-calendar ng-model="birthday"></md-calendar> -->
+      </div>
+    </md-card-content>
+  </md-card>
+</md-list-item>
