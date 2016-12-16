@@ -44,7 +44,6 @@
     vm.trip = {};
     vm.deleteTrip = deleteTrip;
     vm.getYelp = getYelp;
-    // vm.searchResults is an array of coordinates based on a search
     vm.searchResults = [];
     vm.pinClicked = pinClicked;
     vm.infoWindow = infoWindow;
@@ -74,7 +73,6 @@
           longitude: vm.trip.longitude
         }
       }).then(function(response) {
-        // set vm.searchresponse = data.something then make marker
         vm.searchResults = [];
         console.log(response.data)
         for(var i = 0; i < response.data.businesses.length; i++) {
