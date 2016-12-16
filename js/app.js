@@ -22,7 +22,9 @@
     $stateProvider
       .state('index', {
         url: '/',
+        //create a controller and write code for state.go
         templateUrl: 'landing.html',
+        controller: 'LandingController',
         authenticate: false
       })
       .state('signin', {
