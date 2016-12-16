@@ -33,14 +33,7 @@
         <md-button class="md-warn" ng-click="tripShowVm.deleteTrip(trip)">Delete</md-button>
       </div>
 
-      <div class="right-container">
-        <form name="colorForm" ng-submit="tripShowVm.getYelp()">
-          <md-input-container>
-            <label>What Are Your Searching For?</label>
-            <input type="text" ng-model="tripShowVm.searchTerm">
-            <md-button type="submit" class="md-accent">Search</md-button>
-          </md-input-container>
-        </form>
+      <div class="middle-container">
         <ng-map id="google-map" center="[{{tripShowVm.trip.latitude}}, {{tripShowVm.trip.longitude}}]" zoom="12">
           <marker ng-repeat="result in tripShowVm.searchResults" position="[{{result.coordinates.latitude}}, {{result.coordinates.longitude}}]" id="{{result.id}}" on-click="tripShowVm.pinClicked(result)"></marker>
           <info-window id="resultPin">
@@ -50,7 +43,18 @@
             </div>
           </info-window>
         </ng-map>
-        <!-- <md-calendar ng-model="birthday"></md-calendar> -->
+
+        <form name="colorForm" ng-submit="tripShowVm.getYelp()">
+          <md-input-container>
+            <label>What Are Your Searching For?</label>
+            <input type="text" ng-model="tripShowVm.searchTerm">
+            <md-button type="submit" class="md-accent">Search</md-button>
+          </md-input-container>
+        </form>
+      </div>
+
+      <div class="right-container">
+        <md-calendar id="calendar" ng-model="birthday"></md-calendar>
       </div>
     </md-card-content>
   </md-card>
