@@ -29,7 +29,7 @@
           </li>
         </ul>
         <br>
-        <md-button class="md-primary" ui-sref="tripsEdit({id: tripShowVm.trip._id})">Edit</md-button>
+        <md-button class="md-accent" ui-sref="tripsEdit({id: tripShowVm.trip._id})">Edit</md-button>
         <md-button class="md-warn" ng-click="tripShowVm.deleteTrip(trip)">Delete</md-button>
       </div>
 
@@ -38,7 +38,7 @@
           <md-input-container>
             <label>What Are Your Searching For?</label>
             <input type="text" ng-model="tripShowVm.searchTerm">
-            <md-button type="submit" class="md-primary">Search</md-button>
+            <md-button type="submit" class="md-accent">Search</md-button>
           </md-input-container>
         </form>
         <ng-map id="google-map" center="[{{tripShowVm.trip.latitude}}, {{tripShowVm.trip.longitude}}]" zoom="12">
