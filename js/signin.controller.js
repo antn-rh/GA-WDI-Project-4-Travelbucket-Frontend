@@ -5,9 +5,9 @@
     .module('Travelbucket')
     .controller('SignInController', SignInController);
 
-  SignInController.$inject = ['$log', 'authService', 'userService', '$state', '$auth'];
+  SignInController.$inject = ['$log', 'authService', 'userService', '$state', '$auth', '$window'];
 
-  function SignInController($log, authService, userService, $state, $auth) {
+  function SignInController($log, authService, userService, $state, $auth, $window) {
     var vm = this;
 
     // BINDINGS
