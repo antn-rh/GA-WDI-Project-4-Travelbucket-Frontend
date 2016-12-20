@@ -38,7 +38,6 @@
     }
 
     function logOut() {
-      window.location.reload();
       token.destroy();
       $state.go('index');
     }
