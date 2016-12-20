@@ -2,7 +2,7 @@
   <md-card id="trip-card" class="md-list-item-text" layout="column">
     <md-card-content>
       <div class="left-container">
-        <h1><u>{{tripShowVm.trip.location}}</u></h1>
+        <h1><u>{{tripShowVm.trip.city}}, {{tripShowVm.trip.state}}</u></h1>
         Dates: {{tripShowVm.trip.startDate | date: 'MM/dd/yy'}} - {{tripShowVm.trip.endDate | date: 'MM/dd/yy'}}
         <br>
         <h2>Departing Flight:</h2>
