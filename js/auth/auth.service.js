@@ -4,9 +4,9 @@
     .module('Travelbucket')
     .factory('authService', authService);
 
-  authService.$inject = ['$log', 'tokenService', '$http', '$state', '$window'];
+  authService.$inject = ['$log', 'tokenService', '$http', '$state'];
 
-  function authService($log, token, $http, $state, $window) {
+  function authService($log, token, $http, $state) {
     $log.info('auth service loaded!');
 
     var service = {
@@ -38,9 +38,9 @@
     }
 
     function logOut() {
+      window.location.reload();
       token.destroy();
       $state.go('index');
-      $window.location.reload();
     }
 
     function currentUser() {
