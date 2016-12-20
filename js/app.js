@@ -62,7 +62,6 @@
         authenticate: true
       });
   }
-  // there is an issue where sign in with Google button redirects before authenticating
 
   function AuthProvider($authProvider) {
     $authProvider.google({

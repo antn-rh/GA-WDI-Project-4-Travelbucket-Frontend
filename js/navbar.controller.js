@@ -10,6 +10,11 @@
     var vm = this;
     vm.userName = authService.currentUser().name;
     vm.authService = authService;
+    vm.refreshNav = refreshNav;
+
+    function refreshNav() {
+      location.href = '/';
+    }
 
     $log.info('NavbarController loaded!');
   }
