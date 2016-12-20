@@ -1,8 +1,15 @@
 <div class="new-trip-form">
   <form name="colorForm" ng-submit="tripNewVm.addTrip()">
     <md-input-container>
-      <label for="location">Location: </label>
-      <input type="text" ng-model="tripNewVm.newTrip.location" required>
+      <label for="city">City: </label>
+      <input type="text" ng-model="tripNewVm.newTrip.city" required>
+      <div ng-messages="colorForm.favoriteColor.$error">
+        <div ng-message="required">This is required!</div>
+      </div>
+    </md-input-container>
+    <md-input-container>
+      <label for="state">State: </label>
+      <input type="text" ng-model="tripNewVm.newTrip.state" required>
       <div ng-messages="colorForm.favoriteColor.$error">
         <div ng-message="required">This is required!</div>
       </div>

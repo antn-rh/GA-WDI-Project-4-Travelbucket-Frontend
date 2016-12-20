@@ -77,13 +77,7 @@
         vm.searchResults = [];
         console.log(response.data)
         for(var i = 0; i < response.data.businesses.length; i++) {
-          // if(
-          //   response.data.businesses[i].name.toLowerCase().includes(vm.searchTerm.toLowerCase()) ||
-          //   response.data.businesses[i].categories[0].title.toLowerCase().includes(vm.searchTerm.toLowerCase()) ||
-          //   response.data.businesses[i].location.address1.toLowerCase().includes(vm.searchTerm.toLowerCase())
-          //   ) {
             vm.searchResults.push(response.data.businesses[i]);
-          // }
         }
       });
     }
@@ -109,7 +103,7 @@
     }
 
     function addToBookmarks() {
-      console.log('clicked')
+      console.log('clicked');
     }
   }
 
