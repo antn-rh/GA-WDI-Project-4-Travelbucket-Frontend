@@ -10,16 +10,13 @@
       </md-input-container>
       <md-input-container class="md-block" flex-gt-sm>
         <label>State: </label>
-        <md-select ng-model="tripNewVm.newTrip.state" required>
+        <md-select ng-model="tripNewVm.newTrip.state">
           <md-option ng-repeat="state in tripNewVm.states" value="{{state.abbrev}}">
             {{state.abbrev}}
           </md-option>
         </md-select>
-        <div ng-messages="colorForm.favoriteColor.$error">
-          <div ng-message="required">This is required!</div>
-        </div>
       </md-input-container>
-      <md-input-container class="md-block" flex-gt-sm>
+      <md-input-container>
         <label>Start Date: </label>
         <md-datepicker ng-model="tripNewVm.newTrip.startDate"></md-datepicker>
       </md-input-container>
