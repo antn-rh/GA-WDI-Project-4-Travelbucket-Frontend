@@ -11,7 +11,7 @@
       <md-input-container class="md-block" flex-gt-sm>
         <label>State: </label>
         <md-select ng-model="tripEditVm.trip.state">
-          <md-option ng-repeat="state in tripNewVm.states" value="{{state.abbrev}}">
+          <md-option ng-repeat="state in tripEditVm.states" value="{{state.abbrev}}">
             {{state.abbrev}}
           </md-option>
         </md-select>
