@@ -9,8 +9,8 @@
 <body ng-app='Travelbucket' ng-cloak>
   <header ng-controller="NavbarController as vm">
 
-    <md-nav-bar md-selected-nav-item="currentNavItem">
-      <md-nav-item md-nav-sref="tripsIndex">Travelbucket</md-nav-item>
+    <md-nav-bar nav-bar-aria-label="navigation links" md-selected-nav-item="currentNavItem">
+      <md-nav-item md-nav-sref="about">Travelbucket</md-nav-item>
       <md-nav-item md-nav-sref="tripsIndex" ng-show="vm.authService.isLoggedIn()">My Trips</md-nav-item>
       <md-nav-item md-nav-sref="tripsNew" ng-show="vm.authService.isLoggedIn()">New Trip</md-nav-item>
 

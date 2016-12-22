@@ -56,7 +56,6 @@
 
     TripsResource.get({id: $stateParams.id}).$promise.then(function(jsonTrip) {
       vm.trip = jsonTrip;
-      console.log(vm.trip);
     });
 
     function deleteTrip() {
@@ -99,12 +98,12 @@
 
     function infoWindow() {
       return $sce.trustAsHtml(
-        '<h3>' + vm.windowContent.name + '</h2>' +
+        '<h3 style="font-weight: bold">' + vm.windowContent.name + '</h3>' +
         '<p>' + 'Category: ' + vm.windowContent.categories[0].title + '</p>' +
         '<p>' + vm.windowContent.location.address1 + ' ' + vm.windowContent.location.city + ', ' + vm.windowContent.location.state + ' ' + vm.windowContent.location.zip_code + '</p>' +
         '<p>' + vm.windowContent.price + ', ' + vm.windowContent.rating+ ' &#9734, ' + 'Reviews: ' + vm.windowContent.review_count + '</p>' +
-        `<a href=${vm.windowContent.url} target="_blank">Yelp Link</a>` + ' ' +
-        '<a href="" ng-click="tripShowVm.addToBookmarks()">Add to Bookmarks</a>' //ng-click is not working
+        '<p>Bookmark It <input type="checkbox" onclick="console.log(`hello`)"></p>' + ' ' +
+        `<a href=${vm.windowContent.url} target="_blank">Yelp Link</a>`
       );
     }
 

@@ -33,6 +33,11 @@
         controllerAs: 'vm',
         authenticate: false
       })
+      .state('about', {
+        url: '/about',
+        templateUrl: 'about.html',
+        authenticate: true
+      })
       .state('tripsIndex', {
         url: '/trips',
         templateUrl: 'trips.index.html',
