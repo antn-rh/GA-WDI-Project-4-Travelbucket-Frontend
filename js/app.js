@@ -21,7 +21,7 @@
 
     $stateProvider
       .state('index', {
-        url: '/travelbucket_frontend',
+        url: '/',
         templateUrl: 'landing.html',
         controller: 'LandingController',
         authenticate: false
