@@ -39,7 +39,7 @@
 
     function logOut() {
       token.destroy();
-      $state.go('signin');
+      $state.go('index');
     }
 
     function currentUser() {
