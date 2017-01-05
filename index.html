@@ -6,11 +6,15 @@
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
 </head>
+<!-- ngcloak prevents the Angular html template from being briefly displayed by the browser in its uncompiled form -->
 <body ng-app='Travelbucket' ng-cloak>
+
+  <!-- the navbar below will show up on every page -->
   <header ng-controller="NavbarController as vm">
 
     <md-nav-bar nav-bar-aria-label="navigation links" md-selected-nav-item="currentNavItem">
       <md-nav-item md-nav-sref="about">Travelbucket</md-nav-item>
+      <!-- will show navbar items if user is logged in -->
       <md-nav-item md-nav-sref="tripsIndex" ng-show="vm.authService.isLoggedIn()">My Trips</md-nav-item>
       <md-nav-item md-nav-sref="tripsNew" ng-show="vm.authService.isLoggedIn()">New Trip</md-nav-item>
 
@@ -23,32 +27,44 @@
 
   </header>
 
+  <!-- all templates will be rendered in the ui-view -->
   <section ui-view></section>
   <script src="js/auth/jwt-decode.2.0.1.js"></script>
+  <!-- CDN for angular material css -->
   <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.css">
+  <!-- CDN for angularjs -->
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-animate.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-aria.min.js"></script>
+  <!-- CDN for angular material js -->
   <script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.js"></script>
+  <!-- necessary $resource in app.js, allows for requests in trips.resource.js -->
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular-resource.js"></script>
+  <!-- allows for use of states in app.js -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.15/angular-ui-router.js"></script>
   <script src="https://cdn.jsdelivr.net/satellizer/0.15.5/satellizer.min.js"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular-resource.js"></script>
+  <!-- allows for use of google maps using an API key from developers console -->
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBjhPiDnmTAQy95uLaqIr9ONbyAVMC3myw"></script>
+  <!-- min js file for ngmap -->
   <script src="js/config/ngmap.min.js"></script>
+  <!-- app.js contains dependencies and states -->
   <script src="js/app.js"></script>
+  <!-- trips resource allows for interaction with RESTful server-side -->
+  <script src="js/trips.resource.js"></script>
+  <!-- conrollers for landing page, signin page, navbar, and CRUD for trips -->
   <script src="js/landing.controller.js"></script>
   <script src="js/signin.controller.js"></script>
   <script src="js/navbar.controller.js"></script>
-  <script src="js/trips.resource.js"></script>
   <script src="js/trips.controller.js"></script>
+  <!-- sources in js files from js/config -->
   <script src="js/config/app.debug.js"></script>
   <script src="js/config/app.httpInterceptors.js"></script>
   <script src="js/config/authErrorRedirect.service.js"></script>
   <script src="js/config/jsonHeaders.service.js"></script>
   <script src="js/config/tokenSigning.service.js"></script>
+  <!-- sources in js files from js/auth -->
   <script src="js/auth/auth.service.js"></script>
   <script src="js/auth/token.service.js"></script>
   <script src="js/auth/user.service.js"></script>
-  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBjhPiDnmTAQy95uLaqIr9ONbyAVMC3myw">
-</script>
 </body>
 </html>
