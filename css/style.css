@@ -6,6 +6,11 @@ body {
   font-family: 'Inconsolata', monospace;
 }
 
+ul {
+  list-style: none;
+  padding-left: 0;
+}
+
 ::-webkit-input-placeholder { /* Chrome/Opera/Safari */
   font-family: 'Inconsolata', monospace;
 }

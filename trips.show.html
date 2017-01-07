@@ -27,6 +27,7 @@
         <ul>
           <li ng-repeat="bookmark in tripShowVm.trip.bookmarks">
             {{bookmark}}
+            <!-- <md-button class="md-warn" ng-click="tripShowVm.removeBookmark(bookmark)">X</md-button> -->
           </li>
         </ul>
         <form name="colorForm" ng-submit="tripShowVm.addToBookmarks()">
