@@ -19,15 +19,23 @@
           <li>Departure Time: {{tripShowVm.trip.returnFlight.departureTime}}</li>
           <li>Flight Duration: {{tripShowVm.trip.returnFlight.duration}}</li>
         </ul>
-        Lodging: {{tripShowVm.trip.lodgingAddress}}
+        <h2>Lodging:</h2>
+        {{tripShowVm.trip.lodgingAddress}}
         <br>
         <br>
-        Bookmarks:
+        <h2>Bookmarks:</h2>
         <ul>
           <li ng-repeat="bookmark in tripShowVm.trip.bookmarks">
             {{bookmark}}
           </li>
         </ul>
+        <form name="colorForm" ng-submit="tripShowVm.addToBookmarks()">
+          <md-input-container>
+            <label>Add To Your Bookmarks:</label>
+            <input type="text" ng-model="tripShowVm.text">
+            <md-button type="submit" class="md-accent">Submit</md-button>
+          </md-input-container>
+        </form>
         <br>
         <md-button class="md-accent" ui-sref="tripsEdit({id: tripShowVm.trip._id})">Edit</md-button>
         <md-button class="md-warn" ng-click="tripShowVm.deleteTrip(trip)">Delete</md-button>

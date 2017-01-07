@@ -101,13 +101,17 @@
         '<p>' + 'Category: ' + vm.windowContent.categories[0].title + '</p>' +
         '<p>' + vm.windowContent.location.address1 + ' ' + vm.windowContent.location.city + ', ' + vm.windowContent.location.state + ' ' + vm.windowContent.location.zip_code + '</p>' +
         '<p>' + vm.windowContent.price + ', ' + vm.windowContent.rating+ ' &#9734, ' + 'Reviews: ' + vm.windowContent.review_count + '</p>' +
-        '<p>Bookmark It <input type="checkbox" onclick="console.log(`hello`)"></p>' + ' ' +
         `<a href=${vm.windowContent.url} target="_blank">Yelp Link</a>`
       );
     }
 
     function addToBookmarks() {
-      console.log('clicked');
+      vm.trip.bookmarks.push(vm.text);
+      vm.text = null;
+
+      TripsResource.update(vm.trip).$promise.then(function(addedBookmark) {
+        vm.trip = addedBookmark;
+      });
     }
   }
 
@@ -133,7 +137,7 @@
       TripsResource.update(vm.trip).$promise.then(function(editedTrip) {
         vm.trip = editedTrip;
         $state.go('tripsIndex');
-      })
+      });
     }
   }
 }());
