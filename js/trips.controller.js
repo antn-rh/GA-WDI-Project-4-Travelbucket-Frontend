@@ -53,6 +53,7 @@
     vm.pinClicked = pinClicked;
     vm.infoWindow = infoWindow;
     vm.addToBookmarks = addToBookmarks;
+    vm.removeBookmark = removeBookmark;
 
     TripsResource.get({id: $stateParams.id}).$promise.then(function(jsonTrip) {
       vm.trip = jsonTrip;
@@ -113,6 +114,14 @@
 
       TripsResource.update(vm.trip).$promise.then(function(addedBookmark) {
         vm.trip = addedBookmark;
+      });
+    }
+
+    function removeBookmark(bookmark) {
+      vm.trip.bookmarks.splice(vm.trip.bookmarks.indexOf(bookmark), 1);
+
+      TripsResource.update(vm.trip).$promise.then(function(updatedBookmarks) {
+        vm.trip = updatedBookmarks;
       });
     }
   }
