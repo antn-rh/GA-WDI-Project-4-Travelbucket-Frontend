@@ -13,7 +13,7 @@
     vm.refreshNav = refreshNav;
 
     function refreshNav() {
-      location.href = '/';
+      location.href = 'index';
     }
 
     $log.info('NavbarController loaded!');
