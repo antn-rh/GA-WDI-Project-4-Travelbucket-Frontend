@@ -24,10 +24,21 @@
         <br>
         <br>
         <h2>Bookmarks:</h2>
+        <md-content>
+          <md-list style="overflow-y: scroll; max-height: 300px; background-color: white">
+            <md-list-item ng-repeat="bookmark in tripShowVm.trip.bookmarks" ng-click="null">
+              <div class="md-list-item-text">
+                <h3>{{bookmark}}</h3>
+              </div>
+              <md-divider ng-if="!$last"></md-divider>
+            </md-list-item>
+          </md-list>
+        </md-content>
         <ul>
           <li ng-repeat="bookmark in tripShowVm.trip.bookmarks">
             {{bookmark}}
-            <!-- <md-button class="md-warn" ng-click="tripShowVm.removeBookmark(bookmark)">X</md-button> -->
+            <a class="removeBookmark" ng-click="tripShowVm.removeBookmark(bookmark)">X</a>
+            <hr>
           </li>
         </ul>
         <form name="colorForm" ng-submit="tripShowVm.addToBookmarks()">
