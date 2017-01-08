@@ -1,82 +1,85 @@
-<div class="new-trip-form">
-  <form name="colorForm" ng-submit="tripNewVm.addTrip()">
-    <div layout-gt-sm="row">
-      <md-input-container class="md-block" flex-gt-sm>
-        <label>City: </label>
-        <input type="text" ng-model="tripNewVm.newTrip.city" required>
-        <div ng-messages="colorForm.favoriteColor.$error">
-          <div ng-message="required">This is required!</div>
-        </div>
-      </md-input-container>
-      <md-input-container class="md-block" flex-gt-sm>
-        <label>State: </label>
-        <md-select ng-model="tripNewVm.newTrip.state">
-          <md-option ng-repeat="state in tripNewVm.states" value="{{state.abbrev}}">
-            {{state.abbrev}}
-          </md-option>
-        </md-select>
-      </md-input-container>
-      <md-input-container>
-        <label>Start Date: </label>
-        <md-datepicker ng-model="tripNewVm.newTrip.startDate"></md-datepicker>
-      </md-input-container>
-      <md-input-container class="md-block" flex-gt-sm>
-        <label>End Date: </label>
-        <md-datepicker ng-model="tripNewVm.newTrip.endDate"></md-datepicker>
-      </md-input-container>
+<br>
+<md-card>
+  <div class="new-trip-form">
+    <form name="colorForm" ng-submit="tripNewVm.addTrip()">
+      <div layout-gt-sm="row">
+        <md-input-container class="md-block" flex-gt-sm>
+          <label>City: </label>
+          <input type="text" ng-model="tripNewVm.newTrip.city" required>
+          <div ng-messages="colorForm.favoriteColor.$error">
+            <div ng-message="required">This is required!</div>
+          </div>
+        </md-input-container>
+        <md-input-container class="md-block" flex-gt-sm>
+          <label>State: </label>
+          <md-select ng-model="tripNewVm.newTrip.state">
+            <md-option ng-repeat="state in tripNewVm.states" value="{{state.abbrev}}">
+              {{state.abbrev}}
+            </md-option>
+          </md-select>
+        </md-input-container>
+        <md-input-container>
+          <label>Start Date: </label>
+          <md-datepicker ng-model="tripNewVm.newTrip.startDate"></md-datepicker>
+        </md-input-container>
+        <md-input-container class="md-block" flex-gt-sm>
+          <label>End Date: </label>
+          <md-datepicker ng-model="tripNewVm.newTrip.endDate"></md-datepicker>
+        </md-input-container>
+      </div>
+      <div layout-gt-sm="row">
+        <md-input-container class="md-block" flex-gt-sm>
+          <label>Departing Flight Origin: </label>
+          <input type="text" ng-model="tripNewVm.newTrip.departingFlight.origin" required>
+          <div ng-messages="colorForm.favoriteColor.$error">
+            <div ng-message="required">This is required!</div>
+          </div>
+        </md-input-container>
+        <md-input-container class="md-block" flex-gt-sm>
+          <label>Departing Flight Destination: </label>
+          <input type="text" ng-model="tripNewVm.newTrip.departingFlight.destination">
+        </md-input-container>
+        <md-input-container class="md-block" flex-gt-sm>
+          <label>Time of Departing Flight: </label>
+          <input type="text" ng-model="tripNewVm.newTrip.departingFlight.departureTime">
+        </md-input-container>
+        <md-input-container class="md-block" flex-gt-sm>
+          <label>Departing Flight Duration: </label>
+          <input type="text" ng-model="tripNewVm.newTrip.departingFlight.duration">
+        </md-input-container>
+      </div>
+      <div layout-gt-sm="row">
+        <md-input-container class="md-block" flex-gt-sm>
+          <label>Return Flight Origin: </label>
+          <input type="text" ng-model="tripNewVm.newTrip.returnFlight.origin" required>
+          <div ng-messages="colorForm.favoriteColor.$error">
+            <div ng-message="required">This is required!</div>
+          </div>
+        </md-input-container>
+        <md-input-container class="md-block" flex-gt-sm>
+          <label>Return Flight Destination: </label>
+          <input type="text" ng-model="tripNewVm.newTrip.returnFlight.destination">
+        </md-input-container>
+        <md-input-container class="md-block" flex-gt-sm>
+          <label>Time of Return Flight: </label>
+          <input type="text" ng-model="tripNewVm.newTrip.returnFlight.departureTime">
+        </md-input-container>
+        <md-input-container class="md-block" flex-gt-sm>
+          <label>Return Flight Duration: </label>
+          <input type="text" ng-model="tripNewVm.newTrip.returnFlight.duration">
+        </md-input-container>
+      </div>
+      <div layout-gm-sm="row">
+        <md-input-container class="md-block" flex-gt-sm>
+          <label>Lodging Address</label>
+          <input type="text" ng-model="tripNewVm.newTrip.lodgingAddress">
+        </md-input-container>
+        <md-input-container class="md-block" flex-gt-sm>
+          <label>Bookmarks</label>
+          <textarea ng-model="tripNewVm.newTrip.bookmarks" md-maxlength="150" rows="5" md-select-on-focus placeholder="Please separate your bookmarks with commas! (e.g., 'Brooklyn Bridge, Empire State Building, Central Park')"></textarea>
+        </md-input-container>
+      </div>
+      <md-button class="md-accent" type="submit">Submit</button>
+      </form>
     </div>
-    <div layout-gt-sm="row">
-      <md-input-container class="md-block" flex-gt-sm>
-        <label>Departing Flight Origin: </label>
-        <input type="text" ng-model="tripNewVm.newTrip.departingFlight.origin" required>
-        <div ng-messages="colorForm.favoriteColor.$error">
-          <div ng-message="required">This is required!</div>
-        </div>
-      </md-input-container>
-      <md-input-container class="md-block" flex-gt-sm>
-        <label>Departing Flight Destination: </label>
-        <input type="text" ng-model="tripNewVm.newTrip.departingFlight.destination">
-      </md-input-container>
-      <md-input-container class="md-block" flex-gt-sm>
-        <label>Time of Departing Flight: </label>
-        <input type="text" ng-model="tripNewVm.newTrip.departingFlight.departureTime">
-      </md-input-container>
-      <md-input-container class="md-block" flex-gt-sm>
-        <label>Departing Flight Duration: </label>
-        <input type="text" ng-model="tripNewVm.newTrip.departingFlight.duration">
-      </md-input-container>
-    </div>
-    <div layout-gt-sm="row">
-      <md-input-container class="md-block" flex-gt-sm>
-        <label>Return Flight Origin: </label>
-        <input type="text" ng-model="tripNewVm.newTrip.returnFlight.origin" required>
-        <div ng-messages="colorForm.favoriteColor.$error">
-          <div ng-message="required">This is required!</div>
-        </div>
-      </md-input-container>
-      <md-input-container class="md-block" flex-gt-sm>
-        <label>Return Flight Destination: </label>
-        <input type="text" ng-model="tripNewVm.newTrip.returnFlight.destination">
-      </md-input-container>
-      <md-input-container class="md-block" flex-gt-sm>
-        <label>Time of Return Flight: </label>
-        <input type="text" ng-model="tripNewVm.newTrip.returnFlight.departureTime">
-      </md-input-container>
-      <md-input-container class="md-block" flex-gt-sm>
-        <label>Return Flight Duration: </label>
-        <input type="text" ng-model="tripNewVm.newTrip.returnFlight.duration">
-      </md-input-container>
-    </div>
-    <div layout-gm-sm="row">
-      <md-input-container class="md-block" flex-gt-sm>
-        <label>Lodging Address</label>
-        <input type="text" ng-model="tripNewVm.newTrip.lodgingAddress">
-      </md-input-container>
-      <md-input-container class="md-block" flex-gt-sm>
-        <label>Bookmarks</label>
-        <textarea ng-model="tripNewVm.newTrip.bookmarks" md-maxlength="150" rows="5" md-select-on-focus placeholder="Please separate your bookmarks with commas! (e.g., 'Brooklyn Bridge, Empire State Building, Central Park')"></textarea>
-      </md-input-container>
-    </div>
-    <md-button class="md-accent" type="submit">Submit</button>
-  </form>
-</div>
+</md-card>
