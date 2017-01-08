@@ -3,20 +3,25 @@
 }
 
 body {
-  font-family: 'Inconsolata', monospace;
+  font-family: 'Roboto', monospace;
+}
+
+ul {
+  list-style: none;
+  padding-left: 0;
 }
 
 ::-webkit-input-placeholder { /* Chrome/Opera/Safari */
-  font-family: 'Inconsolata', monospace;
+  font-family: 'Roboto', monospace;
 }
 ::-moz-placeholder { /* Firefox 19+ */
-  font-family: 'Inconsolata', monospace;
+  font-family: 'Roboto', monospace;
 }
 :-ms-input-placeholder { /* IE 10+ */
-  font-family: 'Inconsolata', monospace;
+  font-family: 'Roboto', monospace;
 }
 :-moz-placeholder { /* Firefox 18- */
-  font-family: 'Inconsolata', monospace;
+  font-family: 'Roboto', monospace;
 }
 
 .sign-in-form, .sign-up-form, .new-trip-form, .edit-trip-form {
@@ -29,9 +34,31 @@ body {
 
 .left-container, .middle-container, .right-container {
 	float: left;
-	width: 350px;
+	width: 345px;
 	margin: 10px;
 	padding: 10px;
+}
+
+.bookmarkList {
+  overflow-y: scroll;
+  max-height: 190px;
+  background-color: white;
+}
+
+.tripTitle {
+  font-size: 30px;
+}
+
+.removeBookmarkIcon {
+  color: rgba(255, 0, 0, .7)
+}
+
+.searchBar {
+  padding-left: 10px;
+}
+
+.showPageListItem {
+  float: right;
 }
 
 #google-map {

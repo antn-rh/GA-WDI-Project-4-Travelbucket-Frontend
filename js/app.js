@@ -4,6 +4,11 @@
     .module('Travelbucket', ['ui.router', 'satellizer', 'ngResource', 'ngMap', 'ngMaterial'])
     .config(TripRouter)
     .config(AuthProvider)
+    .config(function($mdThemingProvider) {
+      $mdThemingProvider.theme('default')
+        .primaryPalette('teal')
+        .accentPalette('red')
+    })
     .run(function ($rootScope, $state, authService) {
       $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams){
         // if user isn’t authenticated...
