@@ -24,7 +24,7 @@
             <md-nav-item md-nav-sref="tripsIndex" ng-show="vm.authService.isLoggedIn()">{{vm.authService.currentUser().name }}</md-nav-item>
             <md-button class="md-accent md-hue-2" ng-hide="vm.authService.isLoggedIn()" ui-sref="signin" type="button">Sign in</md-button>
             <span flex> </span>
-            <md-button class="md-accent md-hue-2" ng-show="vm.authService.isLoggedIn()" ng-click="vm.authService.logOut(); vm.refreshNav()" type="button">Sign out</md-button>
+            <md-button class="md-accent md-hue-2" ng-show="vm.authService.isLoggedIn()" ng-click="vm.authService.logOut()" type="button">Sign out</md-button>
           </h2>
         </md-toolbar>
     </md-nav-bar>
