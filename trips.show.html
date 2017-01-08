@@ -8,11 +8,13 @@
               <span class="tripTitle">{{tripShowVm.trip.city}}, {{tripShowVm.trip.state}}</span>
             </h2>
           </md-toolbar>
-          <md-list-item>
-            <div class="md-list-item-text">
-              <span>Dates: {{tripShowVm.trip.startDate | date: 'MM/dd/yy'}} - {{tripShowVm.trip.endDate | date: 'MM/dd/yy'}}</span>
-            </div>
-          </md-list-item>
+          <md-list>
+            <md-list-item>
+              <div class="md-list-item-text">
+                Dates: <span class="showPageListItem">{{tripShowVm.trip.startDate | date: 'MM/dd/yy'}} - {{tripShowVm.trip.endDate | date: 'MM/dd/yy'}}</span>
+              </div>
+            </md-list-item>
+          </md-list>
 
           <md-toolbar class="md-primary">
             <h2 class="md-toolbar-tools">
@@ -22,25 +24,25 @@
           <md-list>
             <md-list-item>
               <div class="md-list-item-text">
-                <span>Origin: {{tripShowVm.trip.departingFlight.origin}}</span>
+                Origin: <span class="showPageListItem">{{tripShowVm.trip.departingFlight.origin}}</span>
               </div>
               <md-divider ng-if="!$last"></md-divider>
             </md-list-item>
             <md-list-item>
               <div class="md-list-item-text">
-                <span>Destination: {{tripShowVm.trip.departingFlight.destination}}</span>
+                Destination: <span class="showPageListItem">{{tripShowVm.trip.departingFlight.destination}}</span>
               </div>
               <md-divider ng-if="!$last"></md-divider>
             </md-list-item>
             <md-list-item>
               <div class="md-list-item-text">
-                <span>Departure Time: {{tripShowVm.trip.departingFlight.departureTime}}</span>
+                Departure Time: <span class="showPageListItem">{{tripShowVm.trip.departingFlight.departureTime}}</span>
               </div>
               <md-divider ng-if="!$last"></md-divider>
             </md-list-item>
             <md-list-item>
               <div class="md-list-item-text">
-                <span>Flight Duration: {{tripShowVm.trip.departingFlight.duration}}</span>
+                Flight Duration: <span class="showPageListItem">{{tripShowVm.trip.departingFlight.duration}}</span>
               </div>
             </md-list-item>
           </md-list>
@@ -53,25 +55,25 @@
           <md-list>
             <md-list-item>
               <div class="md-list-item-text">
-                <span>Origin: {{tripShowVm.trip.returnFlight.origin}}</span>
+                Origin: <span class="showPageListItem">{{tripShowVm.trip.returnFlight.origin}}</span>
               </div>
               <md-divider ng-if="!$last"></md-divider>
             </md-list-item>
             <md-list-item>
               <div class="md-list-item-text">
-                <span>Destination: {{tripShowVm.trip.returnFlight.destination}}</span>
+                Destination: <span class="showPageListItem">{{tripShowVm.trip.returnFlight.destination}}</span>
               </div>
               <md-divider ng-if="!$last"></md-divider>
             </md-list-item>
             <md-list-item>
               <div class="md-list-item-text">
-                <span>Departure Time: {{tripShowVm.trip.returnFlight.departureTime}}</span>
+                Departure Time: <span class="showPageListItem">{{tripShowVm.trip.returnFlight.departureTime}}</span>
               </div>
               <md-divider ng-if="!$last"></md-divider>
             </md-list-item>
             <md-list-item>
               <div class="md-list-item-text">
-                <span>Flight Duration: {{tripShowVm.trip.returnFlight.duration}}</span>
+                Flight Duration: <span class="showPageListItem">{{tripShowVm.trip.returnFlight.duration}}</span>
               </div>
             </md-list-item>
           </md-list>
@@ -81,11 +83,13 @@
               <span>Where You're Staying:</span>
             </h2>
           </md-toolbar>
-          <md-list-item>
-            <div class="md-list-item-text">
-              <span>{{tripShowVm.trip.lodgingAddress}}</span>
-            </div>
-          </md-list-item>
+          <md-list>
+            <md-list-item>
+              <div class="md-list-item-text">
+                <span>{{tripShowVm.trip.lodgingAddress}}</span>
+              </div>
+            </md-list-item>
+          </md-list>
 
           <md-toolbar class="md-primary">
             <h2 class="md-toolbar-tools">

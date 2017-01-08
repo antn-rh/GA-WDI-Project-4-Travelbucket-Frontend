@@ -57,6 +57,10 @@ ul {
   padding-left: 10px;
 }
 
+.showPageListItem {
+  float: right;
+}
+
 #google-map {
   max-width: 400px;
 }
