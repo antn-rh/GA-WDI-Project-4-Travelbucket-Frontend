@@ -106,8 +106,10 @@
     }
 
     function addToBookmarks() {
-      vm.trip.bookmarks.push(vm.text);
-      vm.text = null;
+      if(!vm.trip.bookmarks.includes(vm.text)) {
+        vm.trip.bookmarks.push(vm.text);
+        vm.text = null;
+      }
 
       TripsResource.update(vm.trip).$promise.then(function(addedBookmark) {
         vm.trip = addedBookmark;
