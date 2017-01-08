@@ -6,9 +6,8 @@
     .config(AuthProvider)
     .config(function($mdThemingProvider) {
       $mdThemingProvider.theme('default')
-        .primaryPalette('light-blue')
-        .accentPalette('orange')
-        .warnPalette('red');
+        .primaryPalette('teal')
+        .accentPalette('red')
     })
     .run(function ($rootScope, $state, authService) {
       $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams){

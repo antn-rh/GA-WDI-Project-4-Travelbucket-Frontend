@@ -2,7 +2,7 @@
 <html>
 <head>
   <title>Travelbucket</title>
-  <link href="https://fonts.googleapis.com/css?family=Inconsolata" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
 </head>
@@ -10,7 +10,7 @@
   <header ng-controller="NavbarController as vm">
 
     <md-nav-bar nav-bar-aria-label="navigation links" md-selected-nav-item="currentNavItem">
-        <md-toolbar class="md-theme-light">
+        <md-toolbar class="md-accent">
           <h2 class="md-toolbar-tools">
             <md-nav-item md-nav-sref="about">Travelbucket</md-nav-item>
             <md-nav-item md-nav-sref="tripsIndex" ng-show="vm.authService.isLoggedIn()">My Trips</md-nav-item>
@@ -20,7 +20,7 @@
             <md-nav-item md-nav-sref="tripsIndex" ng-show="vm.authService.isLoggedIn()">{{vm.authService.currentUser().name }}</md-nav-item>
             <md-button class="md-accent md-hue-2" ng-hide="vm.authService.isLoggedIn()" ui-sref="signin" type="button">Sign in</md-button>
             <span flex> </span>
-            <md-button class="md-warn md-hue-2" ng-show="vm.authService.isLoggedIn()" ng-click="vm.authService.logOut(); vm.refreshNav()" type="button">Sign out</md-button>
+            <md-button class="md-accent md-hue-2" ng-show="vm.authService.isLoggedIn()" ng-click="vm.authService.logOut(); vm.refreshNav()" type="button">Sign out</md-button>
           </h2>
         </md-toolbar>
     </md-nav-bar>

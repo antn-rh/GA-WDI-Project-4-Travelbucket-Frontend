@@ -3,7 +3,7 @@
     <md-card-content>
       <div class="left-container">
         <md-card>
-          <md-toolbar class="md-theme-light">
+          <md-toolbar class="md-primary">
             <h2 class="md-toolbar-tools">
               <span class="tripTitle">{{tripShowVm.trip.city}}, {{tripShowVm.trip.state}}</span>
             </h2>
@@ -14,7 +14,7 @@
             </div>
           </md-list-item>
 
-          <md-toolbar class="md-theme-light">
+          <md-toolbar class="md-primary">
             <h2 class="md-toolbar-tools">
               <span>Departing Flight:</span>
             </h2>
@@ -30,7 +30,7 @@
             </div>
           </md-list-item>
 
-          <md-toolbar class="md-theme-light">
+          <md-toolbar class="md-primary">
             <h2 class="md-toolbar-tools">
               <span>Return Flight:</span>
             </h2>
@@ -46,7 +46,7 @@
             </div>
           </md-list-item>
 
-          <md-toolbar class="md-theme-light">
+          <md-toolbar class="md-primary">
             <h2 class="md-toolbar-tools">
               <span>Where You're Staying:</span>
             </h2>
@@ -57,7 +57,7 @@
             </div>
           </md-list-item>
 
-          <md-toolbar class="md-theme-light">
+          <md-toolbar class="md-primary">
             <h2 class="md-toolbar-tools">
               <span>Your Bookmarks:</span>
             </h2>
@@ -81,8 +81,8 @@
         </form>
 
         <br>
-        <md-button class="md-accent" ui-sref="tripsEdit({id: tripShowVm.trip._id})">Edit Trip</md-button>
-        <md-button class="md-warn" ng-click="tripShowVm.deleteTrip(trip)">Delete Trip</md-button>
+        <md-button class="md-accent md-raised" ui-sref="tripsEdit({id: tripShowVm.trip._id})">Edit Trip</md-button>
+        <md-button class="md-accent md-raised" ng-click="tripShowVm.deleteTrip(trip)">Delete Trip</md-button>
       </div>
 
       <div class="middle-container">
