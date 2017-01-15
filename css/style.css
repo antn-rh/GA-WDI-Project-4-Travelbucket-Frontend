@@ -28,10 +28,6 @@ ul {
   margin: 3rem;
 }
 
-.google-sign-in {
-  margin: 0 0 0 6.5rem;
-}
-
 .left-container, .middle-container, .right-container {
 	float: left;
 	width: 345px;
