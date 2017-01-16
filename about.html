@@ -5,24 +5,3 @@
     This is the about page.
   </md-card-content>
 </md-card>
-
-<div id="authorize-div" ng-hide='mainCtrl.authorized'>
-  <span>Authorize access to Google Calendar API</span>
-  <button id="authorize-button" ng-click="mainCtrl.handleAuthClick(event)">
-    Authorize
-  </button>
-</div>
-<form ng-submit="mainCtrl.getCalendarEvents()">
-  <select ng-model="mainCtrl.selectedCal">
-    <option ng-repeat="cal in mainCtrl.calendars" value="{{cal.id}}">{{cal.summary}}</option>
-  </select>
-  Start Date:
-  <md-datepicker ng-model="mainCtrl.startDate"></md-datepicker>
-  End Date:
-  <md-datepicker ng-model="mainCtrl.endDate"></md-datepicker>
-  <md-button class="md-raised" type='submit'>See Events</md-button>
-</form>
-
-<div ng-repeat='event in mainCtrl.events | filter: mainCtrl.hoursSearch'>
-  {{event.date}}: {{event.startTime}}-{{event.endTime}}: <a href={{event.link}} target="_blank">{{event.summary}}</a> by {{event.organizer}}
-</div>

@@ -142,9 +142,27 @@
       </div>
 
       <div class="right-container">
-        <md-card>
-          <md-calendar id="calendar" ng-model="birthday"></md-calendar>
-        </md-card>
+        <br>
+        <div id="authorize-div" ng-hide='tripShowVm.authorized'>
+          <span>Authorize access to Google Calendar API</span>
+          <md-button id="authorize-button" class="md-raised md-primary" ng-click="tripShowVm.handleAuthClick(event)">
+            Authorize
+          </md-button>
+        </div>
+        <form ng-submit="tripShowVm.getCalendarEvents()">
+          <select ng-model="tripShowVm.selectedCal">
+            <option ng-repeat="cal in tripShowVm.calendars" value="{{cal.id}}">{{cal.summary}}</option>
+          </select>
+          Start Date:
+          <md-datepicker ng-model="tripShowVm.startDay"></md-datepicker>
+          End Date:
+          <md-datepicker ng-model="tripShowVm.endDay"></md-datepicker>
+          <md-button class="md-raised md-primary" type='submit'>See Events</md-button>
+        </form>
+
+        <div ng-repeat='event in tripShowVm.events | filter: tripShowVm.hoursSearch'>
+          {{event.startTime | date: 'MM/dd/yy @ h:mm a'}} - {{event.endTime | date: 'MM/dd/yy @ h:mm a'}}: <a href={{event.link}} target="_blank">{{event.summary}}</a> by {{event.organizer}}
+        </div>
       </div>
     </md-card-content>
   </md-card>

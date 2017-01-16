@@ -6,39 +6,65 @@
     .controller('TripsNewController', TripsNewController)
     .controller('TripsShowController', TripsShowController)
     .controller('TripsEditController', TripsEditController)
-    .controller('MainController', MainController);
 
   TripsListController.$inject = ['TripsResource', 'authService'];
   TripsNewController.$inject = ['TripsResource', '$state'];
-  TripsShowController.$inject = ['TripsResource', '$stateParams', '$state', '$http', 'NgMap', '$sce'];
+  TripsShowController.$inject = ['TripsResource', '$stateParams', '$state', '$http', 'NgMap', '$sce', '$scope'];
   TripsEditController.$inject = ['TripsResource', '$state', '$stateParams'];
-  MainController.$inject = ['$scope'];
 
-  function MainController($scope) {
+  function TripsListController(TripsResource, authService) {
     var vm = this;
+    vm.trips = [];
+    vm.currentUser = authService.currentUser();
+
+    TripsResource.get().$promise.then(function(data) {
+      vm.trips = data.trips;
+    });
+  }
+
+  function TripsNewController(TripsResource, $state) {
+    var vm = this;
+    vm.newTrip = {};
+    // vm.startDate = new Date();
+    // vm.endDate = new Date();
+    vm.addTrip = addTrip;
+    vm.states = ('AL AK AZ AR CA CO CT DE FL GA HI ID IL IN IA KS KY LA ME MD MA MI MN MS ' +
+    'MO MT NE NV NH NJ NM NY NC ND OH OK OR PA RI SC SD TN TX UT VT VA WA WV WI ' +
+    'WY').split(' ').map(function(state) {
+        return {abbrev: state};
+      });
+
+    function addTrip() {
+      if(vm.newTrip.bookmarks && typeof vm.newTrip.bookmarks === 'string') {
+        vm.newTrip.bookmarks = vm.newTrip.bookmarks.split(',');
+      }
+
+      TripsResource.save(vm.newTrip).$promise.then(function(jsonTrip) {
+        vm.newTrip = {};
+        $state.go('tripsIndex');
+      });
+    }
+  }
+
+  function TripsShowController(TripsResource, $stateParams, $state, $http, NgMap, $sce, $scope) {
+    var vm = this;
+    vm.trip = {};
+    vm.deleteTrip = deleteTrip;
+    vm.getYelp = getYelp;
+    vm.searchResults = [];
+    vm.pinClicked = pinClicked;
+    vm.infoWindow = infoWindow;
+    vm.addToBookmarks = addToBookmarks;
+    vm.removeBookmark = removeBookmark;
     vm.handleAuthClick = handleAuthClick;
     vm.events = [];
     vm.authorized = false;
     vm.calendars = [];
-    vm.startDate = new Date();
+    vm.startDay = new Date();
     vm.getCalendarEvents = getCalendarEvents;
-    vm.hoursSearch = hoursSearch;
 
     var CLIENT_ID = '1055578100655-vov0la7q2vr9acqesmj5dvb5t9fv14tp.apps.googleusercontent.com';
     var SCOPES = ["https://www.googleapis.com/auth/calendar.readonly"];
-
-    /**
-     * Check if current user has authorized this application.
-     */
-    // function checkAuth() {
-    //   gapi.auth.authorize(
-    //     {
-    //       'client_id': CLIENT_ID,
-    //       'scope': SCOPES.join(' '),
-    //       'immediate': true
-    //     }, handleAuthResult);
-    // }
-    // checkAuth();
 
     function handleAuthResult(authResult) {
       if (authResult && !authResult.error) {
@@ -67,10 +93,11 @@
     function loadCalendarApi() {
       gapi.client.load('calendar', 'v3', getCalendars);
     }
+
     function getCalendars() {
       var request = gapi.client.calendar.calendarList.list();
-      request.execute(function(resp) {
-        vm.calendars = resp.items;
+      request.execute(function(res) {
+        vm.calendars = res.items;
         $scope.$apply();
       })
     }
@@ -78,83 +105,29 @@
     function getCalendarEvents() {
       var request = gapi.client.calendar.events.list({
         'calendarId': vm.selectedCal,
-        'timeMin': vm.startDate.toISOString(),
-        'timeMax': vm.endDate.toISOString(),
+        'timeMin': vm.startDay.toISOString(),
+        'timeMax': vm.endDay.toISOString(),
         'showDeleted': false,
         'singleEvents': true
       });
 
-      request.execute(function(resp) {
-        vm.events = resp.items.sort(function(a,b) {
+      request.execute(function(res) {
+        vm.events = res.items.sort(function(a,b) {
           return new Date(a.start.dateTime || a.start.date) - new Date(b.start.dateTime || b.start.date);
         }).map(function(event) {
           return {
-            date: moment(event.start.dateTime || event.start.date).format('ddd, MMM DD'),
-            endTime: moment(event.end.dateTime || event.end.date).format('HH:mm'),
+            date: (event.start.dateTime || event.start.date),
+            endTime: (event.end.dateTime || event.end.date),
             link: event.htmlLink,
             organizer: event.organizer.displayName || event.organizer.email,
-            startTime: moment(event.start.dateTime || event.start.date).format('HH:mm'),
+            startTime: (event.start.dateTime || event.start.date),
             summary: event.summary
           }
         });
-        console.log(resp)
+        console.log(res)
         $scope.$apply();
-
       });
     }
-
-    function hoursSearch(event) {
-      if(event.startTime > vm.startTime) {
-        return event.startTime <= vm.endTime;
-      } else {
-        return event.endTime >= vm.startTime;
-      }
-    }
-  };
-
-
-  function TripsListController(TripsResource, authService) {
-    var vm = this;
-    vm.trips = [];
-    vm.currentUser = authService.currentUser();
-
-    TripsResource.get().$promise.then(function(data) {
-      vm.trips = data.trips;
-    });
-  }
-
-  function TripsNewController(TripsResource, $state) {
-    var vm = this;
-    vm.newTrip = {};
-    vm.addTrip = addTrip;
-    vm.states = ('AL AK AZ AR CA CO CT DE FL GA HI ID IL IN IA KS KY LA ME MD MA MI MN MS ' +
-    'MO MT NE NV NH NJ NM NY NC ND OH OK OR PA RI SC SD TN TX UT VT VA WA WV WI ' +
-    'WY').split(' ').map(function(state) {
-        return {abbrev: state};
-      });
-
-    function addTrip() {
-      if(vm.newTrip.bookmarks && typeof vm.newTrip.bookmarks === 'string') {
-        vm.newTrip.bookmarks = vm.newTrip.bookmarks.split(',');
-      }
-
-      TripsResource.save(vm.newTrip).$promise.then(function(jsonTrip) {
-        vm.newTrip = {};
-        $state.go('tripsIndex');
-      });
-    }
-  }
-
-  function TripsShowController(TripsResource, $stateParams, $state, $http, NgMap, $sce) {
-    var vm = this;
-    vm.trip = {};
-    vm.deleteTrip = deleteTrip;
-    vm.getYelp = getYelp;
-    vm.searchResults = [];
-    vm.pinClicked = pinClicked;
-    vm.infoWindow = infoWindow;
-    vm.addToBookmarks = addToBookmarks;
-    vm.removeBookmark = removeBookmark;
 
     TripsResource.get({id: $stateParams.id}).$promise.then(function(jsonTrip) {
       vm.trip = jsonTrip;

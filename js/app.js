@@ -41,8 +41,6 @@
       .state('about', {
         url: '/about',
         templateUrl: 'about.html',
-        controller: 'MainController',
-        controllerAs: 'mainCtrl',
         authenticate: true
       })
       .state('tripsIndex', {
