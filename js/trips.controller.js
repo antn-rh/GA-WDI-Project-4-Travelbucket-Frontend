@@ -6,11 +6,112 @@
     .controller('TripsNewController', TripsNewController)
     .controller('TripsShowController', TripsShowController)
     .controller('TripsEditController', TripsEditController)
+    .controller('MainController', MainController);
 
   TripsListController.$inject = ['TripsResource', 'authService'];
   TripsNewController.$inject = ['TripsResource', '$state'];
   TripsShowController.$inject = ['TripsResource', '$stateParams', '$state', '$http', 'NgMap', '$sce'];
   TripsEditController.$inject = ['TripsResource', '$state', '$stateParams'];
+  MainController.$inject = ['$scope'];
+
+  function MainController($scope) {
+    var vm = this;
+    vm.handleAuthClick = handleAuthClick;
+    vm.events = [];
+    vm.authorized = false;
+    vm.calendars = [];
+    vm.startDate = new Date();
+    vm.getCalendarEvents = getCalendarEvents;
+    vm.hoursSearch = hoursSearch;
+
+    var CLIENT_ID = '1055578100655-vov0la7q2vr9acqesmj5dvb5t9fv14tp.apps.googleusercontent.com';
+    var SCOPES = ["https://www.googleapis.com/auth/calendar.readonly"];
+
+    /**
+     * Check if current user has authorized this application.
+     */
+    // function checkAuth() {
+    //   gapi.auth.authorize(
+    //     {
+    //       'client_id': CLIENT_ID,
+    //       'scope': SCOPES.join(' '),
+    //       'immediate': true
+    //     }, handleAuthResult);
+    // }
+    // checkAuth();
+
+    function handleAuthResult(authResult) {
+      if (authResult && !authResult.error) {
+        // Hide auth UI, then load client library.
+        vm.authorized = true;
+        $scope.$apply();
+        loadCalendarApi();
+      } else {
+        // Show auth UI, allowing the user to initiate authorization by
+        // clicking authorize button.
+        vm.authorized = false;
+      }
+    }
+
+    function handleAuthClick(event) {
+      gapi.auth.authorize(
+        {client_id: CLIENT_ID, scope: SCOPES, immediate: false},
+        handleAuthResult);
+      return false;
+    }
+
+    /**
+     * Load Google Calendar client library. List upcoming events
+     * once client library is loaded.
+     */
+    function loadCalendarApi() {
+      gapi.client.load('calendar', 'v3', getCalendars);
+    }
+    function getCalendars() {
+      var request = gapi.client.calendar.calendarList.list();
+      request.execute(function(resp) {
+        vm.calendars = resp.items;
+        $scope.$apply();
+      })
+    }
+
+    function getCalendarEvents() {
+      var request = gapi.client.calendar.events.list({
+        'calendarId': vm.selectedCal,
+        'timeMin': vm.startDate.toISOString(),
+        'timeMax': vm.endDate.toISOString(),
+        'showDeleted': false,
+        'singleEvents': true
+      });
+
+      request.execute(function(resp) {
+        vm.events = resp.items.sort(function(a,b) {
+          return new Date(a.start.dateTime || a.start.date) - new Date(b.start.dateTime || b.start.date);
+        }).map(function(event) {
+          return {
+            date: moment(event.start.dateTime || event.start.date).format('ddd, MMM DD'),
+            endTime: moment(event.end.dateTime || event.end.date).format('HH:mm'),
+            link: event.htmlLink,
+            organizer: event.organizer.displayName || event.organizer.email,
+            startTime: moment(event.start.dateTime || event.start.date).format('HH:mm'),
+            summary: event.summary
+          }
+        });
+        console.log(resp)
+        $scope.$apply();
+
+      });
+    }
+
+    function hoursSearch(event) {
+      if(event.startTime > vm.startTime) {
+        return event.startTime <= vm.endTime;
+      } else {
+        return event.endTime >= vm.startTime;
+      }
+    }
+  };
+
 
   function TripsListController(TripsResource, authService) {
     var vm = this;
