@@ -31,42 +31,50 @@ ul {
 .left-container {
 	float: left;
 	width: 600px;
-	margin: 10px;
-	padding: 10px;
+	padding: 30px 0 0 30px;
+}
+
+.middle-container {
+  float: left;
+  width: 550px;
+  padding-top: 30px;
 }
 
 .right-container {
   float: left;
-  width: 500px;
-  margin: 10px;
-  padding-top: 10px;
+  padding: 40px 0 0 10px;
 }
 
-.bookmarkList {
+.bookmark-list {
   overflow-y: scroll;
   max-height: 190px;
   background-color: white;
 }
 
-.tripTitle {
+.trip-title {
   font-size: 30px;
 }
 
-.removeBookmarkIcon {
-  color: rgba(255, 0, 0, .7);
+.remove-bookmark-icon {
+  color: #F44336;
 }
 
-.searchIcon {
-  color: rgba(255, 0, 0, .7);
+.search-icon {
+  color: #F44336;
   padding-right: 15px;
 }
 
-.searchBar {
+.search-bar {
   padding-left: 10px;
 }
 
-.showPageListItem {
+.show-page-list-item {
   float: right;
+}
+
+.authorize-gcal {
+  font-weight: bold;
+  font-size: 14px;
 }
 
 #google-map {

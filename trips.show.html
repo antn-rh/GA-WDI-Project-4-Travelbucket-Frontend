@@ -3,7 +3,7 @@
     <md-card>
       <md-toolbar class="md-primary">
         <h2 class="md-toolbar-tools">
-          <span class="tripTitle">{{tripShowVm.trip.city}}, {{tripShowVm.trip.state}}</span>
+          <span class="trip-title">{{tripShowVm.trip.city}}, {{tripShowVm.trip.state}}</span>
         </h2>
       </md-toolbar>
 
@@ -12,7 +12,7 @@
           You're going to {{tripShowVm.trip.city}} on {{tripShowVm.trip.startDate | date: 'MM/dd/yy'}} - {{tripShowVm.trip.endDate | date: 'MM/dd/yy'}}.
         </div>
         <div id="authorize-div" ng-hide="tripShowVm.authorized">
-          <p>
+          <p class="authorize-gcal">
             View and change your plans. Access your Google Calendar.
             <md-button id="authorize-button" class="md-raised md-accent" ng-click="tripShowVm.handleAuthClick(event)">
               Authorize
@@ -48,18 +48,18 @@
         <h2 class="md-toolbar-tools">
           <span>Where You're Staying:</span>
         </h2>
+        <md-list>
+          <md-list-item>
+            <div class="md-list-item-text">
+              {{tripShowVm.trip.lodgingAddress}}
+            </div>
+            <div class="md-icon-button">
+              <md-tooltip md-direction="left">Search on Google</md-tooltip>
+              <i class="material-icons search-icon" ng-click="tripShowVm.searchAddress()">search</i>
+            </div>
+          </md-list-item>
+        </md-list>
       </md-toolbar>
-      <md-list>
-        <md-list-item>
-          <div class="md-list-item-text">
-            {{tripShowVm.trip.lodgingAddress}}
-          </div>
-          <div class="md-icon-button">
-            <md-tooltip md-direction="left">Search on Google</md-tooltip>
-            <i class="material-icons searchIcon" ng-click="tripShowVm.searchAddress()">search</i>
-          </div>
-        </md-list-item>
-      </md-list>
     </md-card>
     <br>
 
@@ -73,7 +73,7 @@
           </div>
         </info-window>
       </ng-map>
-      <form class="searchBar" name="colorForm" ng-submit="tripShowVm.getYelp()">
+      <form class="search-bar" name="colorForm" ng-submit="tripShowVm.getYelp()">
         <md-input-container>
           <label>What Are Your Searching For?</label>
           <input type="text" ng-model="tripShowVm.searchTerm">
@@ -83,8 +83,8 @@
     </md-card>
   </div><!-- left-container -->
 
-  <div class="right-container">
-    <md-card>
+  <div class="middle-container">
+    <!-- <md-card>
       <md-card-content>
         <div ng-repeat="event in tripShowVm.events">
           <md-list>
@@ -95,7 +95,7 @@
           </md-list>
         </div>
       </md-card-content>
-    </md-card>
+    </md-card> -->
 
     <md-card>
       <md-toolbar class="md-warn">
@@ -105,22 +105,22 @@
         <md-list>
           <md-list-item>
             <div class="md-list-item-text">
-              Origin: <span class="showPageListItem">{{tripShowVm.trip.departingFlight.origin}}</span>
+              Origin: <span class="show-page-list-item">{{tripShowVm.trip.departingFlight.origin}}</span>
             </div>
           </md-list-item>
           <md-list-item>
             <div class="md-list-item-text">
-              Destination: <span class="showPageListItem">{{tripShowVm.trip.departingFlight.destination}}</span>
+              Destination: <span class="show-page-list-item">{{tripShowVm.trip.departingFlight.destination}}</span>
             </div>
           </md-list-item>
           <md-list-item>
             <div class="md-list-item-text">
-              Departure Time: <span class="showPageListItem">{{tripShowVm.trip.departingFlight.departureTime}}</span>
+              Departure Time: <span class="show-page-list-item">{{tripShowVm.trip.departingFlight.departureTime}}</span>
             </div>
           </md-list-item>
           <md-list-item>
             <div class="md-list-item-text">
-              Flight Duration: <span class="showPageListItem">{{tripShowVm.trip.departingFlight.duration}}</span>
+              Flight Duration: <span class="show-page-list-item">{{tripShowVm.trip.departingFlight.duration}}</span>
             </div>
           </md-list-item>
         </md-list>
@@ -135,22 +135,22 @@
         <md-list>
           <md-list-item>
             <div class="md-list-item-text">
-              Origin: <span class="showPageListItem">{{tripShowVm.trip.returnFlight.origin}}</span>
+              Origin: <span class="show-page-list-item">{{tripShowVm.trip.returnFlight.origin}}</span>
             </div>
           </md-list-item>
           <md-list-item>
             <div class="md-list-item-text">
-              Destination: <span class="showPageListItem">{{tripShowVm.trip.returnFlight.destination}}</span>
+              Destination: <span class="show-page-list-item">{{tripShowVm.trip.returnFlight.destination}}</span>
             </div>
           </md-list-item>
           <md-list-item>
             <div class="md-list-item-text">
-              Departure Time: <span class="showPageListItem">{{tripShowVm.trip.returnFlight.departureTime}}</span>
+              Departure Time: <span class="show-page-list-item">{{tripShowVm.trip.returnFlight.departureTime}}</span>
             </div>
           </md-list-item>
           <md-list-item>
             <div class="md-list-item-text">
-              Flight Duration: <span class="showPageListItem">{{tripShowVm.trip.returnFlight.duration}}</span>
+              Flight Duration: <span class="show-page-list-item">{{tripShowVm.trip.returnFlight.duration}}</span>
             </div>
           </md-list-item>
         </md-list>
@@ -163,14 +163,14 @@
           <span>Your Bookmarks:</span>
         </h2>
       </md-toolbar>
-      <md-list class="bookmarkList">
+      <md-list class="bookmark-list">
         <md-list-item ng-repeat="bookmark in tripShowVm.trip.bookmarks">
           <div class="md-list-item-text">
             <h3>{{bookmark}}</h3>
           </div>
           <div class="md-icon-button">
             <md-tooltip md-direction="left">Remove Bookmark</md-tooltip>
-            <i class="material-icons removeBookmarkIcon" ng-click="tripShowVm.removeBookmark(bookmark)">highlight_off</i>
+            <i class="material-icons remove-bookmark-icon" ng-click="tripShowVm.removeBookmark(bookmark)">highlight_off</i>
           </div>
           <md-divider ng-if="!$last"></md-divider>
         </md-list-item>
@@ -179,7 +179,7 @@
 
     <md-card>
       <md-card-content>
-        <form class="searchBar" name="colorForm" ng-submit="tripShowVm.addToBookmarks()">
+        <form class="search-bar" name="colorForm" ng-submit="tripShowVm.addToBookmarks()">
           <md-input-container>
             <label>Add To Your Bookmarks:</label>
             <input type="text" ng-model="tripShowVm.text">
@@ -187,10 +187,18 @@
         </form>
       </md-card-content>
     </md-card>
+  </div><!-- middle-container -->
 
-
+  <div class="right-container">
+    <md-button class="md-accent md-raised md-icon-button" ui-sref="tripsEdit({id: tripShowVm.trip._id})">
+      <md-tooltip md-direction="left">Edit Trip</md-tooltip>
+      <i class="material-icons">edit</i>
+    </md-button>
     <br>
-    <md-button class="md-accent md-raised" ui-sref="tripsEdit({id: tripShowVm.trip._id})">Edit Trip</md-button>
-    <md-button class="md-accent md-raised" ng-click="tripShowVm.deleteTrip(trip)">Delete Trip</md-button>
+    <br>
+    <md-button class="md-accent md-raised md-icon-button" ng-click="tripShowVm.deleteTrip(trip)">
+      <md-tooltip md-direction="left">Delete Trip</md-tooltip>
+      <i class="material-icons">delete</i>
+    </md-button>
   </div><!-- right-container -->
 </md-list-item>
