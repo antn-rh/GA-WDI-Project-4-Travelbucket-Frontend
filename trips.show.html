@@ -52,9 +52,12 @@
       <md-list>
         <md-list-item>
           <div class="md-list-item-text">
-            <span>{{tripShowVm.trip.lodgingAddress}}</span>
+            {{tripShowVm.trip.lodgingAddress}}
           </div>
-          <i class="material-icons searchIcon" ng-click="tripShowVm.searchAddress()">search</i>
+          <div class="md-icon-button">
+            <md-tooltip md-direction="left">Search on Google</md-tooltip>
+            <i class="material-icons searchIcon" ng-click="tripShowVm.searchAddress()">search</i>
+          </div>
         </md-list-item>
       </md-list>
     </md-card>
@@ -82,7 +85,7 @@
 
   <div class="right-container">
     <md-card>
-      <md-content>
+      <md-card-content>
         <div ng-repeat="event in tripShowVm.events">
           <md-list>
             <md-list-item>
@@ -91,73 +94,67 @@
             </md-list-item>
           </md-list>
         </div>
-      </md-content>
+      </md-card-content>
     </md-card>
 
     <md-card>
-      <md-toolbar class="md-primary">
+      <md-toolbar class="md-warn">
         <h2 class="md-toolbar-tools">
-          <span>Departing Flight:</span>
+          <span>Departing Flight</span>
         </h2>
+        <md-list>
+          <md-list-item>
+            <div class="md-list-item-text">
+              Origin: <span class="showPageListItem">{{tripShowVm.trip.departingFlight.origin}}</span>
+            </div>
+          </md-list-item>
+          <md-list-item>
+            <div class="md-list-item-text">
+              Destination: <span class="showPageListItem">{{tripShowVm.trip.departingFlight.destination}}</span>
+            </div>
+          </md-list-item>
+          <md-list-item>
+            <div class="md-list-item-text">
+              Departure Time: <span class="showPageListItem">{{tripShowVm.trip.departingFlight.departureTime}}</span>
+            </div>
+          </md-list-item>
+          <md-list-item>
+            <div class="md-list-item-text">
+              Flight Duration: <span class="showPageListItem">{{tripShowVm.trip.departingFlight.duration}}</span>
+            </div>
+          </md-list-item>
+        </md-list>
       </md-toolbar>
-      <md-list>
-        <md-list-item>
-          <div class="md-list-item-text">
-            Origin: <span class="showPageListItem">{{tripShowVm.trip.departingFlight.origin}}</span>
-          </div>
-          <md-divider ng-if="!$last"></md-divider>
-        </md-list-item>
-        <md-list-item>
-          <div class="md-list-item-text">
-            Destination: <span class="showPageListItem">{{tripShowVm.trip.departingFlight.destination}}</span>
-          </div>
-          <md-divider ng-if="!$last"></md-divider>
-        </md-list-item>
-        <md-list-item>
-          <div class="md-list-item-text">
-            Departure Time: <span class="showPageListItem">{{tripShowVm.trip.departingFlight.departureTime}}</span>
-          </div>
-          <md-divider ng-if="!$last"></md-divider>
-        </md-list-item>
-        <md-list-item>
-          <div class="md-list-item-text">
-            Flight Duration: <span class="showPageListItem">{{tripShowVm.trip.departingFlight.duration}}</span>
-          </div>
-        </md-list-item>
-      </md-list>
     </md-card>
 
     <md-card>
-      <md-toolbar class="md-primary">
+      <md-toolbar class="md-warn">
         <h2 class="md-toolbar-tools">
-          <span>Return Flight:</span>
+          <span>Return Flight</span>
         </h2>
+        <md-list>
+          <md-list-item>
+            <div class="md-list-item-text">
+              Origin: <span class="showPageListItem">{{tripShowVm.trip.returnFlight.origin}}</span>
+            </div>
+          </md-list-item>
+          <md-list-item>
+            <div class="md-list-item-text">
+              Destination: <span class="showPageListItem">{{tripShowVm.trip.returnFlight.destination}}</span>
+            </div>
+          </md-list-item>
+          <md-list-item>
+            <div class="md-list-item-text">
+              Departure Time: <span class="showPageListItem">{{tripShowVm.trip.returnFlight.departureTime}}</span>
+            </div>
+          </md-list-item>
+          <md-list-item>
+            <div class="md-list-item-text">
+              Flight Duration: <span class="showPageListItem">{{tripShowVm.trip.returnFlight.duration}}</span>
+            </div>
+          </md-list-item>
+        </md-list>
       </md-toolbar>
-      <md-list>
-        <md-list-item>
-          <div class="md-list-item-text">
-            Origin: <span class="showPageListItem">{{tripShowVm.trip.returnFlight.origin}}</span>
-          </div>
-          <md-divider ng-if="!$last"></md-divider>
-        </md-list-item>
-        <md-list-item>
-          <div class="md-list-item-text">
-            Destination: <span class="showPageListItem">{{tripShowVm.trip.returnFlight.destination}}</span>
-          </div>
-          <md-divider ng-if="!$last"></md-divider>
-        </md-list-item>
-        <md-list-item>
-          <div class="md-list-item-text">
-            Departure Time: <span class="showPageListItem">{{tripShowVm.trip.returnFlight.departureTime}}</span>
-          </div>
-          <md-divider ng-if="!$last"></md-divider>
-        </md-list-item>
-        <md-list-item>
-          <div class="md-list-item-text">
-            Flight Duration: <span class="showPageListItem">{{tripShowVm.trip.returnFlight.duration}}</span>
-          </div>
-        </md-list-item>
-      </md-list>
     </md-card>
 
     <md-card>
@@ -171,21 +168,29 @@
           <div class="md-list-item-text">
             <h3>{{bookmark}}</h3>
           </div>
-          <i class="material-icons removeBookmarkIcon" ng-click="tripShowVm.removeBookmark(bookmark)">highlight_off</i>
+          <div class="md-icon-button">
+            <md-tooltip md-direction="left">Remove Bookmark</md-tooltip>
+            <i class="material-icons removeBookmarkIcon" ng-click="tripShowVm.removeBookmark(bookmark)">highlight_off</i>
+          </div>
           <md-divider ng-if="!$last"></md-divider>
         </md-list-item>
       </md-list>
     </md-card>
 
-    <form class="searchBar" name="colorForm" ng-submit="tripShowVm.addToBookmarks()">
-      <md-input-container>
-        <label>Add To Your Bookmarks:</label>
-        <input type="text" ng-model="tripShowVm.text">
-      </md-input-container>
-    </form>
+    <md-card>
+      <md-card-content>
+        <form class="searchBar" name="colorForm" ng-submit="tripShowVm.addToBookmarks()">
+          <md-input-container>
+            <label>Add To Your Bookmarks:</label>
+            <input type="text" ng-model="tripShowVm.text">
+          </md-input-container>
+        </form>
+      </md-card-content>
+    </md-card>
+
 
     <br>
     <md-button class="md-accent md-raised" ui-sref="tripsEdit({id: tripShowVm.trip._id})">Edit Trip</md-button>
     <md-button class="md-accent md-raised" ng-click="tripShowVm.deleteTrip(trip)">Delete Trip</md-button>
-  </div>
+  </div><!-- right-container -->
 </md-list-item>
