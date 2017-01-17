@@ -8,6 +8,7 @@
       $mdThemingProvider.theme('default')
         .primaryPalette('teal')
         .accentPalette('red')
+        .warnPalette('indigo');
     })
     .run(function ($rootScope, $state, authService) {
       $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams){

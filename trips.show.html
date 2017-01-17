@@ -1,193 +1,180 @@
 <md-list-item class="md-2-line">
-  <md-card id="trip-card" class="md-list-item-text" layout="column">
-    <md-card-content>
-      <div class="left-container">
-        <md-card>
-          <md-toolbar class="md-primary">
-            <h2 class="md-toolbar-tools">
-              <span class="tripTitle">{{tripShowVm.trip.city}}, {{tripShowVm.trip.state}}</span>
-            </h2>
-          </md-toolbar>
-          <!-- <md-list>
-            <md-list-item>
-              <div class="md-list-item-text">
-                Dates: {{tripShowVm.trip.startDate | date: 'MM/dd/yy'}} - {{tripShowVm.trip.endDate | date: 'MM/dd/yy'}}
-              </div>
-            </md-list-item>
-          </md-list> -->
-        <!-- </md-card>
+  <div class="left-container">
+    <md-card>
+      <md-toolbar class="md-primary">
+        <h2 class="md-toolbar-tools">
+          <span class="tripTitle">{{tripShowVm.trip.city}}, {{tripShowVm.trip.state}}</span>
+        </h2>
+      </md-toolbar>
 
-        <md-card> -->
-          <md-card-content>
-            <div class="md-list-item-text">
-              You're going to {{tripShowVm.trip.city}} on {{tripShowVm.trip.startDate | date: 'MM/dd/yy'}} - {{tripShowVm.trip.endDate | date: 'MM/dd/yy'}}.
-            </div>
-            <div id="authorize-div" ng-hide="tripShowVm.authorized">
-              <p>
-                View and change your plans. Access your Google Calendar.
-                <md-button id="authorize-button" class="md-raised md-accent" ng-click="tripShowVm.handleAuthClick(event)">
-                  Authorize
-                </md-button>
-              </p>
-            </div>
-            <form ng-submit="tripShowVm.getCalendarEvents()">
-              <br>
-              <md-input-container ng-show="tripShowVm.authorized">
-                <label>Select Calendar</label>
-                <md-select ng-model="tripShowVm.selectedCal">
-                  <md-option ng-repeat="cal in tripShowVm.calendars" value="{{cal.id}}">{{cal.summary}}</md-option>
-                </md-select>
-              </md-input-container>
-              <br>
-              <md-input-container>
-                <label>Start Date</label>
-                <md-datepicker ng-model="tripShowVm.startDay"></md-datepicker>
-              </md-input-container>
-              <md-input-container>
-                <label>End Date</label>
-                <md-datepicker ng-model="tripShowVm.endDay"></md-datepicker>
-              </md-input-container>
-              <br>
-              <md-button class="md-raised md-accent" type='submit'>See Events</md-button>
-            </form>
-
-            <div ng-repeat='event in tripShowVm.events | filter: tripShowVm.hoursSearch'>
-              <md-list>
-                <md-list-item>
-                  <a href={{event.link}} target="_blank">{{event.summary}}</a> {{event.startTime | date: 'MM/dd/yy @ h:mm a'}} - {{event.endTime | date: 'h:mm a'}}
-                </md-list-item>
-              </md-list>
-            </div>
-          </md-card-content>
-        </md-card>
-
-        <md-card>
-          <md-toolbar class="md-primary">
-            <h2 class="md-toolbar-tools">
-              <span>Departing Flight:</span>
-            </h2>
-          </md-toolbar>
-          <md-list>
-            <md-list-item>
-              <div class="md-list-item-text">
-                Origin: <span class="showPageListItem">{{tripShowVm.trip.departingFlight.origin}}</span>
-              </div>
-              <md-divider ng-if="!$last"></md-divider>
-            </md-list-item>
-            <md-list-item>
-              <div class="md-list-item-text">
-                Destination: <span class="showPageListItem">{{tripShowVm.trip.departingFlight.destination}}</span>
-              </div>
-              <md-divider ng-if="!$last"></md-divider>
-            </md-list-item>
-            <md-list-item>
-              <div class="md-list-item-text">
-                Departure Time: <span class="showPageListItem">{{tripShowVm.trip.departingFlight.departureTime}}</span>
-              </div>
-              <md-divider ng-if="!$last"></md-divider>
-            </md-list-item>
-            <md-list-item>
-              <div class="md-list-item-text">
-                Flight Duration: <span class="showPageListItem">{{tripShowVm.trip.departingFlight.duration}}</span>
-              </div>
-            </md-list-item>
-          </md-list>
-
-          <md-toolbar class="md-primary">
-            <h2 class="md-toolbar-tools">
-              <span>Return Flight:</span>
-            </h2>
-          </md-toolbar>
-          <md-list>
-            <md-list-item>
-              <div class="md-list-item-text">
-                Origin: <span class="showPageListItem">{{tripShowVm.trip.returnFlight.origin}}</span>
-              </div>
-              <md-divider ng-if="!$last"></md-divider>
-            </md-list-item>
-            <md-list-item>
-              <div class="md-list-item-text">
-                Destination: <span class="showPageListItem">{{tripShowVm.trip.returnFlight.destination}}</span>
-              </div>
-              <md-divider ng-if="!$last"></md-divider>
-            </md-list-item>
-            <md-list-item>
-              <div class="md-list-item-text">
-                Departure Time: <span class="showPageListItem">{{tripShowVm.trip.returnFlight.departureTime}}</span>
-              </div>
-              <md-divider ng-if="!$last"></md-divider>
-            </md-list-item>
-            <md-list-item>
-              <div class="md-list-item-text">
-                Flight Duration: <span class="showPageListItem">{{tripShowVm.trip.returnFlight.duration}}</span>
-              </div>
-            </md-list-item>
-          </md-list>
-
-          <md-toolbar class="md-primary">
-            <h2 class="md-toolbar-tools">
-              <span>Where You're Staying:</span>
-            </h2>
-          </md-toolbar>
-          <md-list>
-            <md-list-item>
-              <div class="md-list-item-text">
-                <span>{{tripShowVm.trip.lodgingAddress}}</span>
-              </div>
-              <i class="material-icons searchIcon" ng-click="tripShowVm.searchAddress()">search</i>
-            </md-list-item>
-          </md-list>
-
-          <md-toolbar class="md-primary">
-            <h2 class="md-toolbar-tools">
-              <span>Your Bookmarks:</span>
-            </h2>
-          </md-toolbar>
-          <md-list class="bookmarkList">
-            <md-list-item ng-repeat="bookmark in tripShowVm.trip.bookmarks">
-              <div class="md-list-item-text">
-                <h3>{{bookmark}}</h3>
-              </div>
-              <i class="material-icons removeBookmarkIcon" ng-click="tripShowVm.removeBookmark(bookmark)">highlight_off</i>
-              <md-divider ng-if="!$last"></md-divider>
-            </md-list-item>
-          </md-list>
-        </md-card>
-
-        <form class="searchBar" name="colorForm" ng-submit="tripShowVm.addToBookmarks()">
-          <md-input-container>
-            <label>Add To Your Bookmarks:</label>
-            <input type="text" ng-model="tripShowVm.text">
+      <md-card-content>
+        <div class="md-list-item-text">
+          You're going to {{tripShowVm.trip.city}} on {{tripShowVm.trip.startDate | date: 'MM/dd/yy'}} - {{tripShowVm.trip.endDate | date: 'MM/dd/yy'}}.
+        </div>
+        <div id="authorize-div" ng-hide="tripShowVm.authorized">
+          <p>
+            View and change your plans. Access your Google Calendar.
+            <md-button id="authorize-button" class="md-raised md-accent" ng-click="tripShowVm.handleAuthClick(event)">
+              Authorize
+            </md-button>
+          </p>
+        </div>
+        <form ng-submit="tripShowVm.getCalendarEvents()">
+          <br>
+          <md-input-container ng-show="tripShowVm.authorized">
+            <label>Select Calendar</label>
+            <md-select ng-model="tripShowVm.selectedCal">
+              <md-option ng-repeat="cal in tripShowVm.calendars" value="{{cal.id}}">{{cal.summary}}</md-option>
+            </md-select>
           </md-input-container>
+          <br>
+          <md-input-container>
+            <label>Start Date</label>
+            <md-datepicker ng-model="tripShowVm.startDay"></md-datepicker>
+          </md-input-container>
+          <md-input-container>
+            <label>End Date</label>
+            <md-datepicker ng-model="tripShowVm.endDay"></md-datepicker>
+          </md-input-container>
+          <br>
+          <md-button class="md-raised md-accent" type='submit'>See Events</md-button>
         </form>
 
-        <br>
-        <md-button class="md-accent md-raised" ui-sref="tripsEdit({id: tripShowVm.trip._id})">Edit Trip</md-button>
-        <md-button class="md-accent md-raised" ng-click="tripShowVm.deleteTrip(trip)">Delete Trip</md-button>
-      </div>
+        <div ng-repeat='event in tripShowVm.events | filter: tripShowVm.hoursSearch'>
+          <md-list>
+            <md-list-item>
+              <a href={{event.link}} target="_blank">{{event.summary}}</a>
+              {{event.startTime | date: 'MM/dd/yy @ h:mm a'}} - {{event.endTime | date: 'h:mm a'}}
+            </md-list-item>
+          </md-list>
+        </div>
+      </md-card-content>
+    </md-card>
 
-      <div class="right-container">
-        <md-card>
-          <ng-map id="google-map" center="[{{tripShowVm.trip.latitude}}, {{tripShowVm.trip.longitude}}]" zoom="12">
-            <marker ng-repeat="result in tripShowVm.searchResults" position="[{{result.coordinates.latitude}}, {{result.coordinates.longitude}}]" id="{{result.id}}" on-click="tripShowVm.pinClicked(result)"></marker>
-            <info-window id="resultPin">
-              <div ng-non-bindable="">
-                <div ng-bind-html="tripShowVm.infoWindow()">
-                </div>
-              </div>
-            </info-window>
-          </ng-map>
-        </md-card>
+    <md-card>
+      <md-toolbar class="md-primary">
+        <h2 class="md-toolbar-tools">
+          <span>Departing Flight:</span>
+        </h2>
+      </md-toolbar>
+      <md-list>
+        <md-list-item>
+          <div class="md-list-item-text">
+            Origin: <span class="showPageListItem">{{tripShowVm.trip.departingFlight.origin}}</span>
+          </div>
+          <md-divider ng-if="!$last"></md-divider>
+        </md-list-item>
+        <md-list-item>
+          <div class="md-list-item-text">
+            Destination: <span class="showPageListItem">{{tripShowVm.trip.departingFlight.destination}}</span>
+          </div>
+          <md-divider ng-if="!$last"></md-divider>
+        </md-list-item>
+        <md-list-item>
+          <div class="md-list-item-text">
+            Departure Time: <span class="showPageListItem">{{tripShowVm.trip.departingFlight.departureTime}}</span>
+          </div>
+          <md-divider ng-if="!$last"></md-divider>
+        </md-list-item>
+        <md-list-item>
+          <div class="md-list-item-text">
+            Flight Duration: <span class="showPageListItem">{{tripShowVm.trip.departingFlight.duration}}</span>
+          </div>
+        </md-list-item>
+      </md-list>
 
-        <form class="searchBar" name="colorForm" ng-submit="tripShowVm.getYelp()">
-          <md-input-container>
-            <label>What Are Your Searching For?</label>
-            <input type="text" ng-model="tripShowVm.searchTerm">
-            <md-button type="submit" class="md-accent">Search</md-button>
-          </md-input-container>
-        </form>
+      <md-toolbar class="md-primary">
+        <h2 class="md-toolbar-tools">
+          <span>Return Flight:</span>
+        </h2>
+      </md-toolbar>
+      <md-list>
+        <md-list-item>
+          <div class="md-list-item-text">
+            Origin: <span class="showPageListItem">{{tripShowVm.trip.returnFlight.origin}}</span>
+          </div>
+          <md-divider ng-if="!$last"></md-divider>
+        </md-list-item>
+        <md-list-item>
+          <div class="md-list-item-text">
+            Destination: <span class="showPageListItem">{{tripShowVm.trip.returnFlight.destination}}</span>
+          </div>
+          <md-divider ng-if="!$last"></md-divider>
+        </md-list-item>
+        <md-list-item>
+          <div class="md-list-item-text">
+            Departure Time: <span class="showPageListItem">{{tripShowVm.trip.returnFlight.departureTime}}</span>
+          </div>
+          <md-divider ng-if="!$last"></md-divider>
+        </md-list-item>
+        <md-list-item>
+          <div class="md-list-item-text">
+            Flight Duration: <span class="showPageListItem">{{tripShowVm.trip.returnFlight.duration}}</span>
+          </div>
+        </md-list-item>
+      </md-list>
 
-      </div>
-    </md-card-content>
-  </md-card>
+      <md-toolbar class="md-primary">
+        <h2 class="md-toolbar-tools">
+          <span>Where You're Staying:</span>
+        </h2>
+      </md-toolbar>
+      <md-list>
+        <md-list-item>
+          <div class="md-list-item-text">
+            <span>{{tripShowVm.trip.lodgingAddress}}</span>
+          </div>
+          <i class="material-icons searchIcon" ng-click="tripShowVm.searchAddress()">search</i>
+        </md-list-item>
+      </md-list>
+
+      <md-toolbar class="md-primary">
+        <h2 class="md-toolbar-tools">
+          <span>Your Bookmarks:</span>
+        </h2>
+      </md-toolbar>
+      <md-list class="bookmarkList">
+        <md-list-item ng-repeat="bookmark in tripShowVm.trip.bookmarks">
+          <div class="md-list-item-text">
+            <h3>{{bookmark}}</h3>
+          </div>
+          <i class="material-icons removeBookmarkIcon" ng-click="tripShowVm.removeBookmark(bookmark)">highlight_off</i>
+          <md-divider ng-if="!$last"></md-divider>
+        </md-list-item>
+      </md-list>
+    </md-card>
+
+    <form class="searchBar" name="colorForm" ng-submit="tripShowVm.addToBookmarks()">
+      <md-input-container>
+        <label>Add To Your Bookmarks:</label>
+        <input type="text" ng-model="tripShowVm.text">
+      </md-input-container>
+    </form>
+
+    <br>
+    <md-button class="md-accent md-raised" ui-sref="tripsEdit({id: tripShowVm.trip._id})">Edit Trip</md-button>
+    <md-button class="md-accent md-raised" ng-click="tripShowVm.deleteTrip(trip)">Delete Trip</md-button>
+  </div>
+
+  <div class="right-container">
+    <md-card>
+      <ng-map id="google-map" center="[{{tripShowVm.trip.latitude}}, {{tripShowVm.trip.longitude}}]" zoom="12">
+        <marker ng-repeat="result in tripShowVm.searchResults" position="[{{result.coordinates.latitude}}, {{result.coordinates.longitude}}]" id="{{result.id}}" on-click="tripShowVm.pinClicked(result)"></marker>
+        <info-window id="resultPin">
+          <div ng-non-bindable="">
+            <div ng-bind-html="tripShowVm.infoWindow()">
+            </div>
+          </div>
+        </info-window>
+      </ng-map>
+    </md-card>
+
+    <form class="searchBar" name="colorForm" ng-submit="tripShowVm.getYelp()">
+      <md-input-container>
+        <label>What Are Your Searching For?</label>
+        <input type="text" ng-model="tripShowVm.searchTerm">
+        <md-button type="submit" class="md-accent">Search</md-button>
+      </md-input-container>
+    </form>
+  </div>
 </md-list-item>
