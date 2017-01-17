@@ -143,27 +143,34 @@
 
         <md-card>
           <md-card-content>
-            <div id="authorize-div" ng-hide='tripShowVm.authorized'>
-              <span>Authorize access to Google Calendar API</span>
+            <div id="authorize-div" ng-hide="tripShowVm.authorized">
+              <span>Authorize access to your Google Calendar</span>
               <md-button id="authorize-button" class="md-raised md-primary" ng-click="tripShowVm.handleAuthClick(event)">
                 Authorize
               </md-button>
             </div>
             <form ng-submit="tripShowVm.getCalendarEvents()">
-              <select ng-model="tripShowVm.selectedCal">
-                <option ng-repeat="cal in tripShowVm.calendars" value="{{cal.id}}">{{cal.summary}}</option>
-              </select>
-              Start Date:
-              <md-datepicker ng-model="tripShowVm.startDay"></md-datepicker>
-              End Date:
-              <md-datepicker ng-model="tripShowVm.endDay"></md-datepicker>
-              <md-button class="md-raised md-primary" type='submit'>See Events</md-button>
+              <md-input-container ng-show="tripShowVm.authorized">
+                <label>Select calendar</label>
+                <md-select ng-model="tripShowVm.selectedCal">
+                  <md-option ng-repeat="cal in tripShowVm.calendars" value="{{cal.id}}">{{cal.summary}}</md-option>
+                </md-select>
+                <md-button class="md-raised md-primary" type='submit'>See Events</md-button>
+              </md-input-container>
+              <br>
+              <md-input-container>
+                <md-datepicker ng-model="tripShowVm.startDay"></md-datepicker>
+              </md-input-container>
+              <md-input-container>
+                <label>End Date</label>
+                <md-datepicker ng-model="tripShowVm.endDay"></md-datepicker>
+              </md-input-container>
             </form>
 
             <div ng-repeat='event in tripShowVm.events | filter: tripShowVm.hoursSearch'>
               <md-list>
                 <md-list-item>
-                  {{event.startTime | date: 'MM/dd/yy @ h:mm a'}} - {{event.endTime | date: 'h:mm a'}}: <a href={{event.link}} target="_blank">{{event.summary}}</a> by {{event.organizer}}
+                  <a href={{event.link}} target="_blank">{{event.summary}}</a> {{event.startTime | date: 'MM/dd/yy @ h:mm a'}} - {{event.endTime | date: 'h:mm a'}}
                 </md-list-item>
               </md-list>
             </div>
