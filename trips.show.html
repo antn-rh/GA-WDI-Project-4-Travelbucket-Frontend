@@ -41,7 +41,6 @@
         </form>
       </md-card-content>
     </md-card>
-    <br>
 
     <md-card>
       <md-toolbar class="md-primary">
@@ -61,7 +60,6 @@
         </md-list>
       </md-toolbar>
     </md-card>
-    <br>
 
     <md-card>
       <ng-map id="google-map" center="[{{tripShowVm.trip.latitude}}, {{tripShowVm.trip.longitude}}]" zoom="12">
@@ -81,9 +79,6 @@
         </md-input-container>
       </form>
     </md-card>
-  </div><!-- left-container -->
-
-  <div class="middle-container">
     <!-- <md-card>
       <md-card-content>
         <div ng-repeat="event in tripShowVm.events">
@@ -96,6 +91,35 @@
         </div>
       </md-card-content>
     </md-card> -->
+
+    <md-dialog>
+      <form ng-cloak>
+        <md-toolbar class="md-primary">
+          <div class="md-toolbar-tools">
+            <h2>Your Upcoming Events</h2>
+            <span flex></span>
+            <md-button class="md-icon-button" ng-click="tripShowVm.cancel()">
+              <md-icon md-svg-src="img/icons/ic_close_24px.svg" aria-label="Close dialog"></md-icon>
+            </md-button>
+          </div>
+        </md-toolbar>
+
+        <md-dialog-content>
+          <div class="md-dialog-content" ng-repeat="event in tripShowVm.events">
+            <md-list>
+              <md-list-item>
+                <a href={{event.link}} target="_blank">{{event.summary}}</a>
+                {{event.startTime | date: 'MM/dd/yy @ h:mm a'}} - {{event.endTime | date: 'h:mm a'}}
+              </md-list-item>
+            </md-list>
+          </div>
+        </md-dialog-content>
+      </form>
+    </md-dialog>
+
+  </div><!-- left-container -->
+
+  <div class="middle-container">
 
     <md-card>
       <md-toolbar class="md-warn">

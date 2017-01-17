@@ -12,6 +12,9 @@
   TripsShowController.$inject = ['TripsResource', '$stateParams', '$state', '$http', 'NgMap', '$sce', '$scope'];
   TripsEditController.$inject = ['TripsResource', '$state', '$stateParams'];
 
+//
+// TRIPS LIST CONTROLLER
+//
   function TripsListController(TripsResource, authService) {
     var vm = this;
     vm.trips = [];
@@ -22,9 +25,13 @@
     });
   }
 
+//
+// TRIPS NEW CONTROLLER
+//
   function TripsNewController(TripsResource, $state) {
     var vm = this;
     vm.newTrip = {};
+    // there is currently an error about the instance of the datepicker, the code below might help
     // vm.startDate = new Date();
     // vm.endDate = new Date();
     vm.addTrip = addTrip;
@@ -46,14 +53,19 @@
     }
   }
 
+//
+// TRIPS SHOW CONTROLLER
+//
   function TripsShowController(TripsResource, $stateParams, $state, $http, NgMap, $sce, $scope) {
     var vm = this;
+    // for google calendar api
     vm.handleAuthClick = handleAuthClick;
     vm.events = [];
     vm.authorized = false;
     vm.calendars = [];
     vm.startDay = new Date();
     vm.getCalendarEvents = getCalendarEvents;
+    // for overall functionality of the trips show page
     vm.trip = {};
     vm.deleteTrip = deleteTrip;
     vm.getYelp = getYelp;
@@ -208,6 +220,9 @@
     }
   }
 
+//
+// TRIPS EDIT CONTROLLER
+//
   function TripsEditController(TripsResource, $state, $stateParams) {
     var vm = this;
     vm.trip = {};
