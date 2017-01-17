@@ -37,7 +37,7 @@ ul {
 
 .right-container {
   float: left;
-  width: 500px;
+  width: 600px;
   margin: 10px;
   padding-top: 10px;
   /*padding-left: 40px;*/
@@ -71,7 +71,7 @@ ul {
 }
 
 #google-map {
-  max-width: 500px;
+  max-width: 600px;
 }
 
 #trip-card {
