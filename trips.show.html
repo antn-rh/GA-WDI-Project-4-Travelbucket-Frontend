@@ -8,14 +8,60 @@
               <span class="tripTitle">{{tripShowVm.trip.city}}, {{tripShowVm.trip.state}}</span>
             </h2>
           </md-toolbar>
-          <md-list>
+          <!-- <md-list>
             <md-list-item>
               <div class="md-list-item-text">
-                Dates: <span class="showPageListItem">{{tripShowVm.trip.startDate | date: 'MM/dd/yy'}} - {{tripShowVm.trip.endDate | date: 'MM/dd/yy'}}</span>
+                Dates: {{tripShowVm.trip.startDate | date: 'MM/dd/yy'}} - {{tripShowVm.trip.endDate | date: 'MM/dd/yy'}}
               </div>
             </md-list-item>
-          </md-list>
+          </md-list> -->
+        <!-- </md-card>
 
+        <md-card> -->
+          <md-card-content>
+            <div class="md-list-item-text">
+              You're going to {{tripShowVm.trip.city}} on {{tripShowVm.trip.startDate | date: 'MM/dd/yy'}} - {{tripShowVm.trip.endDate | date: 'MM/dd/yy'}}.
+            </div>
+            <div id="authorize-div" ng-hide="tripShowVm.authorized">
+              <p>
+                View and change your plans. Access your Google Calendar.
+                <md-button id="authorize-button" class="md-raised md-accent" ng-click="tripShowVm.handleAuthClick(event)">
+                  Authorize
+                </md-button>
+              </p>
+            </div>
+            <form ng-submit="tripShowVm.getCalendarEvents()">
+              <br>
+              <md-input-container ng-show="tripShowVm.authorized">
+                <label>Select Calendar</label>
+                <md-select ng-model="tripShowVm.selectedCal">
+                  <md-option ng-repeat="cal in tripShowVm.calendars" value="{{cal.id}}">{{cal.summary}}</md-option>
+                </md-select>
+              </md-input-container>
+              <br>
+              <md-input-container>
+                <label>Start Date</label>
+                <md-datepicker ng-model="tripShowVm.startDay"></md-datepicker>
+              </md-input-container>
+              <md-input-container>
+                <label>End Date</label>
+                <md-datepicker ng-model="tripShowVm.endDay"></md-datepicker>
+              </md-input-container>
+              <br>
+              <md-button class="md-raised md-accent" type='submit'>See Events</md-button>
+            </form>
+
+            <div ng-repeat='event in tripShowVm.events | filter: tripShowVm.hoursSearch'>
+              <md-list>
+                <md-list-item>
+                  <a href={{event.link}} target="_blank">{{event.summary}}</a> {{event.startTime | date: 'MM/dd/yy @ h:mm a'}} - {{event.endTime | date: 'h:mm a'}}
+                </md-list-item>
+              </md-list>
+            </div>
+          </md-card-content>
+        </md-card>
+
+        <md-card>
           <md-toolbar class="md-primary">
             <h2 class="md-toolbar-tools">
               <span>Departing Flight:</span>
@@ -140,46 +186,6 @@
             <md-button type="submit" class="md-accent">Search</md-button>
           </md-input-container>
         </form>
-
-        <md-card>
-          <md-card-content>
-            <div id="authorize-div" ng-hide="tripShowVm.authorized">
-              <span>
-                View and change your plans. Access your Google Calendar.
-                <md-button id="authorize-button" class="md-raised md-primary" ng-click="tripShowVm.handleAuthClick(event)">
-                  Authorize
-                </md-button>
-              </span>
-            </div>
-            <form ng-submit="tripShowVm.getCalendarEvents()">
-              <md-input-container ng-show="tripShowVm.authorized">
-                <label>Select Calendar</label>
-                <md-select ng-model="tripShowVm.selectedCal">
-                  <md-option ng-repeat="cal in tripShowVm.calendars" value="{{cal.id}}">{{cal.summary}}</md-option>
-                </md-select>
-              </md-input-container>
-              <br>
-              <md-input-container>
-                <label>Start Date</label>
-                <md-datepicker ng-model="tripShowVm.startDay"></md-datepicker>
-              </md-input-container>
-              <md-input-container>
-                <label>End Date</label>
-                <md-datepicker ng-model="tripShowVm.endDay"></md-datepicker>
-              </md-input-container>
-              <br>
-              <md-button class="md-raised md-primary" type='submit'>See Events</md-button>
-            </form>
-
-            <div ng-repeat='event in tripShowVm.events | filter: tripShowVm.hoursSearch'>
-              <md-list>
-                <md-list-item>
-                  <a href={{event.link}} target="_blank">{{event.summary}}</a> {{event.startTime | date: 'MM/dd/yy @ h:mm a'}} - {{event.endTime | date: 'h:mm a'}}
-                </md-list-item>
-              </md-list>
-            </div>
-          </md-card-content>
-        </md-card>
 
       </div>
     </md-card-content>
