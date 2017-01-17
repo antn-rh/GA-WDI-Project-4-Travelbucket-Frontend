@@ -28,11 +28,19 @@ ul {
   margin: 3rem;
 }
 
-.left-container, .middle-container, .right-container {
+.left-container {
 	float: left;
-	width: 345px;
+	width: 500px;
 	margin: 10px;
 	padding: 10px;
+}
+
+.right-container {
+  float: left;
+  width: 500px;
+  margin: 10px;
+  padding-top: 10px;
+  /*padding-left: 40px;*/
 }
 
 .bookmarkList {
@@ -46,7 +54,12 @@ ul {
 }
 
 .removeBookmarkIcon {
-  color: rgba(255, 0, 0, .7)
+  color: rgba(255, 0, 0, .7);
+}
+
+.searchIcon {
+  color: rgba(255, 0, 0, .7);
+  padding-right: 15px;
 }
 
 .searchBar {
@@ -58,7 +71,7 @@ ul {
 }
 
 #google-map {
-  max-width: 400px;
+  max-width: 500px;
 }
 
 #trip-card {

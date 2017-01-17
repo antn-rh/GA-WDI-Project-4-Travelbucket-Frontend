@@ -88,6 +88,7 @@
               <div class="md-list-item-text">
                 <span>{{tripShowVm.trip.lodgingAddress}}</span>
               </div>
+              <i class="material-icons searchIcon" ng-click="tripShowVm.searchAddress()">search</i>
             </md-list-item>
           </md-list>
 
@@ -119,7 +120,7 @@
         <md-button class="md-accent md-raised" ng-click="tripShowVm.deleteTrip(trip)">Delete Trip</md-button>
       </div>
 
-      <div class="middle-container">
+      <div class="right-container">
         <md-card>
           <ng-map id="google-map" center="[{{tripShowVm.trip.latitude}}, {{tripShowVm.trip.longitude}}]" zoom="12">
             <marker ng-repeat="result in tripShowVm.searchResults" position="[{{result.coordinates.latitude}}, {{result.coordinates.longitude}}]" id="{{result.id}}" on-click="tripShowVm.pinClicked(result)"></marker>
@@ -139,30 +140,36 @@
             <md-button type="submit" class="md-accent">Search</md-button>
           </md-input-container>
         </form>
-      </div>
 
-      <div class="right-container">
-        <br>
-        <div id="authorize-div" ng-hide='tripShowVm.authorized'>
-          <span>Authorize access to Google Calendar API</span>
-          <md-button id="authorize-button" class="md-raised md-primary" ng-click="tripShowVm.handleAuthClick(event)">
-            Authorize
-          </md-button>
-        </div>
-        <form ng-submit="tripShowVm.getCalendarEvents()">
-          <select ng-model="tripShowVm.selectedCal">
-            <option ng-repeat="cal in tripShowVm.calendars" value="{{cal.id}}">{{cal.summary}}</option>
-          </select>
-          Start Date:
-          <md-datepicker ng-model="tripShowVm.startDay"></md-datepicker>
-          End Date:
-          <md-datepicker ng-model="tripShowVm.endDay"></md-datepicker>
-          <md-button class="md-raised md-primary" type='submit'>See Events</md-button>
-        </form>
+        <md-card>
+          <md-card-content>
+            <div id="authorize-div" ng-hide='tripShowVm.authorized'>
+              <span>Authorize access to Google Calendar API</span>
+              <md-button id="authorize-button" class="md-raised md-primary" ng-click="tripShowVm.handleAuthClick(event)">
+                Authorize
+              </md-button>
+            </div>
+            <form ng-submit="tripShowVm.getCalendarEvents()">
+              <select ng-model="tripShowVm.selectedCal">
+                <option ng-repeat="cal in tripShowVm.calendars" value="{{cal.id}}">{{cal.summary}}</option>
+              </select>
+              Start Date:
+              <md-datepicker ng-model="tripShowVm.startDay"></md-datepicker>
+              End Date:
+              <md-datepicker ng-model="tripShowVm.endDay"></md-datepicker>
+              <md-button class="md-raised md-primary" type='submit'>See Events</md-button>
+            </form>
 
-        <div ng-repeat='event in tripShowVm.events | filter: tripShowVm.hoursSearch'>
-          {{event.startTime | date: 'MM/dd/yy @ h:mm a'}} - {{event.endTime | date: 'MM/dd/yy @ h:mm a'}}: <a href={{event.link}} target="_blank">{{event.summary}}</a> by {{event.organizer}}
-        </div>
+            <div ng-repeat='event in tripShowVm.events | filter: tripShowVm.hoursSearch'>
+              <md-list>
+                <md-list-item>
+                  {{event.startTime | date: 'MM/dd/yy @ h:mm a'}} - {{event.endTime | date: 'h:mm a'}}: <a href={{event.link}} target="_blank">{{event.summary}}</a> by {{event.organizer}}
+                </md-list-item>
+              </md-list>
+            </div>
+          </md-card-content>
+        </md-card>
+
       </div>
     </md-card-content>
   </md-card>

@@ -48,6 +48,12 @@
 
   function TripsShowController(TripsResource, $stateParams, $state, $http, NgMap, $sce, $scope) {
     var vm = this;
+    vm.handleAuthClick = handleAuthClick;
+    vm.events = [];
+    vm.authorized = false;
+    vm.calendars = [];
+    vm.startDay = new Date();
+    vm.getCalendarEvents = getCalendarEvents;
     vm.trip = {};
     vm.deleteTrip = deleteTrip;
     vm.getYelp = getYelp;
@@ -56,17 +62,13 @@
     vm.infoWindow = infoWindow;
     vm.addToBookmarks = addToBookmarks;
     vm.removeBookmark = removeBookmark;
-    vm.handleAuthClick = handleAuthClick;
-    vm.events = [];
-    vm.authorized = false;
-    vm.calendars = [];
-    vm.startDay = new Date();
-    vm.getCalendarEvents = getCalendarEvents;
+    vm.searchAddress = searchAddress;
 
     var CLIENT_ID = '1055578100655-vov0la7q2vr9acqesmj5dvb5t9fv14tp.apps.googleusercontent.com';
     var SCOPES = ["https://www.googleapis.com/auth/calendar.readonly"];
 
     function handleAuthResult(authResult) {
+      // big issue: when i sign in and authorize a calendar, signing in to a diff acc loads the same cal
       if (authResult && !authResult.error) {
         // Hide auth UI, then load client library.
         vm.authorized = true;
@@ -197,6 +199,11 @@
       TripsResource.update(vm.trip).$promise.then(function(updatedBookmarks) {
         vm.trip = updatedBookmarks;
       });
+    }
+
+    function searchAddress() {
+      var address = vm.trip.lodgingAddress.split(' ').join('+');
+      window.open(`https://www.google.com/search?q=${address}`);
     }
   }
 
