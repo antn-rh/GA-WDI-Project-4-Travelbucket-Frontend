@@ -39,8 +39,51 @@
           <br>
           <md-button class="md-raised md-accent" type='submit'>See Events</md-button>
         </form>
+      </md-card-content>
+    </md-card>
+    <br>
 
-        <div ng-repeat='event in tripShowVm.events | filter: tripShowVm.hoursSearch'>
+    <md-card>
+      <md-toolbar class="md-primary">
+        <h2 class="md-toolbar-tools">
+          <span>Where You're Staying:</span>
+        </h2>
+      </md-toolbar>
+      <md-list>
+        <md-list-item>
+          <div class="md-list-item-text">
+            <span>{{tripShowVm.trip.lodgingAddress}}</span>
+          </div>
+          <i class="material-icons searchIcon" ng-click="tripShowVm.searchAddress()">search</i>
+        </md-list-item>
+      </md-list>
+    </md-card>
+    <br>
+
+    <md-card>
+      <ng-map id="google-map" center="[{{tripShowVm.trip.latitude}}, {{tripShowVm.trip.longitude}}]" zoom="12">
+        <marker ng-repeat="result in tripShowVm.searchResults" position="[{{result.coordinates.latitude}}, {{result.coordinates.longitude}}]" id="{{result.id}}" on-click="tripShowVm.pinClicked(result)"></marker>
+        <info-window id="resultPin">
+          <div ng-non-bindable="">
+            <div ng-bind-html="tripShowVm.infoWindow()">
+            </div>
+          </div>
+        </info-window>
+      </ng-map>
+      <form class="searchBar" name="colorForm" ng-submit="tripShowVm.getYelp()">
+        <md-input-container>
+          <label>What Are Your Searching For?</label>
+          <input type="text" ng-model="tripShowVm.searchTerm">
+          <md-button type="submit" class="md-accent">Search</md-button>
+        </md-input-container>
+      </form>
+    </md-card>
+  </div><!-- left-container -->
+
+  <div class="right-container">
+    <md-card>
+      <md-content>
+        <div ng-repeat="event in tripShowVm.events">
           <md-list>
             <md-list-item>
               <a href={{event.link}} target="_blank">{{event.summary}}</a>
@@ -48,7 +91,7 @@
             </md-list-item>
           </md-list>
         </div>
-      </md-card-content>
+      </md-content>
     </md-card>
 
     <md-card>
@@ -82,7 +125,9 @@
           </div>
         </md-list-item>
       </md-list>
+    </md-card>
 
+    <md-card>
       <md-toolbar class="md-primary">
         <h2 class="md-toolbar-tools">
           <span>Return Flight:</span>
@@ -113,21 +158,9 @@
           </div>
         </md-list-item>
       </md-list>
+    </md-card>
 
-      <md-toolbar class="md-primary">
-        <h2 class="md-toolbar-tools">
-          <span>Where You're Staying:</span>
-        </h2>
-      </md-toolbar>
-      <md-list>
-        <md-list-item>
-          <div class="md-list-item-text">
-            <span>{{tripShowVm.trip.lodgingAddress}}</span>
-          </div>
-          <i class="material-icons searchIcon" ng-click="tripShowVm.searchAddress()">search</i>
-        </md-list-item>
-      </md-list>
-
+    <md-card>
       <md-toolbar class="md-primary">
         <h2 class="md-toolbar-tools">
           <span>Your Bookmarks:</span>
@@ -154,27 +187,5 @@
     <br>
     <md-button class="md-accent md-raised" ui-sref="tripsEdit({id: tripShowVm.trip._id})">Edit Trip</md-button>
     <md-button class="md-accent md-raised" ng-click="tripShowVm.deleteTrip(trip)">Delete Trip</md-button>
-  </div>
-
-  <div class="right-container">
-    <md-card>
-      <ng-map id="google-map" center="[{{tripShowVm.trip.latitude}}, {{tripShowVm.trip.longitude}}]" zoom="12">
-        <marker ng-repeat="result in tripShowVm.searchResults" position="[{{result.coordinates.latitude}}, {{result.coordinates.longitude}}]" id="{{result.id}}" on-click="tripShowVm.pinClicked(result)"></marker>
-        <info-window id="resultPin">
-          <div ng-non-bindable="">
-            <div ng-bind-html="tripShowVm.infoWindow()">
-            </div>
-          </div>
-        </info-window>
-      </ng-map>
-    </md-card>
-
-    <form class="searchBar" name="colorForm" ng-submit="tripShowVm.getYelp()">
-      <md-input-container>
-        <label>What Are Your Searching For?</label>
-        <input type="text" ng-model="tripShowVm.searchTerm">
-        <md-button type="submit" class="md-accent">Search</md-button>
-      </md-input-container>
-    </form>
   </div>
 </md-list-item>

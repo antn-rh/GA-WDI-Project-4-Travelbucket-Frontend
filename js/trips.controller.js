@@ -114,6 +114,7 @@
       });
 
       request.execute(function(res) {
+        //issue where events don't show if event is on end date
         vm.events = res.items.sort(function(a,b) {
           return new Date(a.start.dateTime || a.start.date) - new Date(b.start.dateTime || b.start.date);
         }).map(function(event) {
@@ -126,7 +127,6 @@
             summary: event.summary
           }
         });
-        console.log(res)
         $scope.$apply();
       });
     }
@@ -145,6 +145,7 @@
     }
 
     function getYelp() {
+      // needs some finetuning. search is quite limited, only completes search within a certain radius (lat/long)
       $http({
         method: 'POST',
         // change this url when you deploy
