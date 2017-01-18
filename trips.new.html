@@ -41,7 +41,9 @@
         </md-input-container>
         <md-input-container class="md-block" flex-gt-sm>
           <label>Time of Departing Flight: </label>
-          <input type="text" ng-model="tripNewVm.newTrip.departingFlight.departureTime">
+          <md-select ng-model="tripNewVm.newTrip.departingFlight.departureTime" ng-required="true">
+            <md-option ng-value="time" ng-repeat="time in tripNewVm.eventHours">{{time}}</md-option>
+          </md-select>
         </md-input-container>
         <md-input-container class="md-block" flex-gt-sm>
           <label>Departing Flight Duration: </label>
@@ -62,7 +64,9 @@
         </md-input-container>
         <md-input-container class="md-block" flex-gt-sm>
           <label>Time of Return Flight: </label>
-          <input type="text" ng-model="tripNewVm.newTrip.returnFlight.departureTime">
+          <md-select ng-model="tripNewVm.newTrip.returnFlight.departureTime" ng-required="true">
+            <md-option ng-value="time" ng-repeat="time in tripNewVm.eventHours">{{time}}</md-option>
+          </md-select>
         </md-input-container>
         <md-input-container class="md-block" flex-gt-sm>
           <label>Return Flight Duration: </label>
