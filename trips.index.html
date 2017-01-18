@@ -1,8 +1,10 @@
 <br>
 
 <md-card ng-repeat="trip in tripListVm.trips | filter: {createdBy: tripListVm.currentUser._id}">
- <md-card-content>
-   <h2>{{trip.city}}, {{trip.state}}: {{trip.startDate | date: 'MM/dd/yy'}} - {{trip.endDate | date: 'MM/dd/yy'}}</h2>
-   <p ui-sref="tripsShow({id: trip._id})">Show More</p>
- </md-card-content>
+   <md-toolbar class="md-primary">
+     <md-card-content>
+       <h3>{{trip.city}}, {{trip.state}}: {{trip.startDate | date: 'MM/dd/yy'}} - {{trip.endDate | date: 'MM/dd/yy'}}</h3>
+       <p class="trip-index-show-more" ui-sref="tripsShow({id: trip._id})">Show More</p>
+     </md-card-content>
+   </md-toolbar>
 </md-card>
