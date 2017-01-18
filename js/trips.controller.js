@@ -32,8 +32,8 @@
     var vm = this;
     vm.newTrip = {};
     // there is currently a console error about the instance of the datepicker, the code below might help
-    // vm.startDate = new Date();
-    // vm.endDate = new Date();
+    // vm.startDate = new Date(vm.startDate);
+    // vm.endDate = new Date(vm.endDate);
     vm.addTrip = addTrip;
     vm.states = ('AL AK AZ AR CA CO CT DE FL GA HI ID IL IN IA KS KY LA ME MD MA MI MN MS ' +
     'MO MT NE NV NH NJ NM NY NC ND OH OK OR PA RI SC SD TN TX UT VT VA WA WV WI ' +
