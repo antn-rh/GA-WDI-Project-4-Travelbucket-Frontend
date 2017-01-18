@@ -87,6 +87,12 @@ ul {
   font-size: 14px;
 }
 
+.about-paragraph {
+  padding: 20px;
+  font-size: 25px;
+  line-height: 1.5;
+}
+
 #google-map {
   max-width: 600px;
 }
