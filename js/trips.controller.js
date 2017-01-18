@@ -19,10 +19,24 @@
     var vm = this;
     vm.trips = [];
     vm.currentUser = authService.currentUser();
+    vm.tripsListEmpty;
 
     TripsResource.get().$promise.then(function(data) {
-      vm.trips = data.trips;
+      data.trips.forEach(function(trip) {
+        if(trip.createdBy == vm.currentUser._id) {
+          vm.trips.push(trip);
+        }
+      });
+      // console.log(vm.trips.length);
+      if(vm.trips.length == 0) {
+        vm.tripsListEmpty = true;
+      } else {
+        vm.tripsListEmpty = false;
+      }
+      // console.log(vm.tripsListEmpty);
     });
+
+
   }
 
 //
