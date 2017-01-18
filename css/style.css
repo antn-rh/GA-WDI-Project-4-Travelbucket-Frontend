@@ -93,6 +93,62 @@ ul {
   line-height: 1.5;
 }
 
+.landing-intro {
+  font-size: 30px;
+  padding: 20px;
+}
+
+.landing-paragraph {
+  font-size: 25px;
+  padding: 20px;
+}
+
+.demo-bookmark-list {
+  overflow-y: scroll;
+  max-height: 220px;
+  background-color: white;
+}
+
 #google-map {
   max-width: 600px;
+}
+
+#demo-row-1, #demo-row-2 {
+  max-width: 1300px;
+}
+
+#landing-demo-flights-left {
+  float: left;
+  width: 450px;
+  padding: 10px 0 10px 0;
+}
+
+#landing-demo-flights-middle {
+  float: left;
+  width: 450px;
+  padding: 10px 10px 10px 0;
+}
+
+#landing-demo-flights-right {
+  float: left;
+  width: 300px;
+  padding: 80px 0 0 0;
+}
+
+#landing-demo-bookmarks-left {
+  float: left;
+  width: 300px;
+  padding: 80px 0 0 10px;
+}
+
+#landing-demo-bookmarks-middle {
+  float: left;
+  width: 450px;
+  padding: 10px 0 10px 10px;
+}
+
+#landing-demo-bookmarks-right {
+  float: left;
+  width: 450px;
+  padding: 10px 10px 10px 0;
 }

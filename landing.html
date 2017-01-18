@@ -1,9 +1,179 @@
 <br>
 
 <md-card>
-  <md-card-content>
-    <i class="material-icons">airplanemode_active</i>
-    Where will you go next? Let Travelbucket help you plan your next trip.
-
-  </md-card-content>
+  <md-toolbar class="md-primary">
+    <md-card-content>
+      <p class="landing-intro"><i class="material-icons">airplanemode_active</i>Traveling somewhere? Let Travelbucket help you plan your next trip.</p>
+    </md-card-content>
+  </md-toolbar>
 </md-card>
+
+<md-list-item class="md-2-line">
+  <div id="demo-row-1">
+    <div id="landing-demo-flights-left">
+      <md-card>
+        <md-toolbar class="md-warn">
+          <h2 class="md-toolbar-tools">
+            <span>Departing Flight</span>
+          </h2>
+          <md-list>
+            <md-list-item>
+              <div class="md-list-item-text">
+                Origin: <span class="show-page-list-item">LAX</span>
+              </div>
+            </md-list-item>
+            <md-list-item>
+              <div class="md-list-item-text">
+                Destination: <span class="show-page-list-item">JFK</span>
+              </div>
+            </md-list-item>
+            <md-list-item>
+              <div class="md-list-item-text">
+                Departure Time: <span class="show-page-list-item">10:00</span>
+              </div>
+            </md-list-item>
+            <md-list-item>
+              <div class="md-list-item-text">
+                Flight Duration: <span class="show-page-list-item">6 hrs 15 min</span>
+              </div>
+            </md-list-item>
+          </md-list>
+        </md-toolbar>
+      </md-card>
+    </div>
+
+    <div id="landing-demo-flights-middle">
+      <md-card>
+        <md-toolbar class="md-warn">
+          <h2 class="md-toolbar-tools">
+            <span>Return Flight</span>
+          </h2>
+          <md-list>
+            <md-list-item>
+              <div class="md-list-item-text">
+                Origin: <span class="show-page-list-item">JFK</span>
+              </div>
+            </md-list-item>
+            <md-list-item>
+              <div class="md-list-item-text">
+                Destination: <span class="show-page-list-item">LAX</span>
+              </div>
+            </md-list-item>
+            <md-list-item>
+              <div class="md-list-item-text">
+                Departure Time: <span class="show-page-list-item">15:00</span>
+              </div>
+            </md-list-item>
+            <md-list-item>
+              <div class="md-list-item-text">
+                Flight Duration: <span class="show-page-list-item">3 hrs 15 min</span>
+              </div>
+            </md-list-item>
+          </md-list>
+        </md-toolbar>
+      </md-card>
+    </div>
+
+    <div id="landing-demo-flights-right">
+      <md-card>
+        <md-toolbar class="md-accent">
+          <md-card-content>
+            <p class="landing-paragraph">Store important flight information.</p>
+          </md-card-content>
+        </md-toolbar>
+      </md-card>
+    </div>
+  </div><!-- demo-row-1 -->
+</md-list-item>
+
+<br>
+
+<md-list-item class="md-2-line">
+  <div id="demo-row-2">
+    <div id="landing-demo-bookmarks-left">
+      <md-card>
+        <md-toolbar class="md-accent">
+          <md-card-content>
+            <p class="landing-paragraph">Search places and add to your bookmarks.</p>
+          </md-card-content>
+        </md-toolbar>
+      </md-card>
+    </div>
+
+    <div id="landing-demo-bookmarks-middle">
+      <md-card>
+        <ng-map id="landing-demo-map" center="40.7831, -73.9712" zoom="12"></ng-map>
+      </md-card>
+    </div>
+
+    <div id="landing-demo-bookmarks-right">
+      <md-card>
+        <md-toolbar class="md-primary">
+          <h2 class="md-toolbar-tools">Your Bookmarks:</h2>
+        </md-toolbar>
+        <md-list class="demo-bookmark-list">
+          <md-list-item>
+            <div class="md-list-item-text">
+              <h3>Central Park</h3>
+            </div>
+            <div class="md-icon-button">
+              <md-tooltip md-direction="left">Remove Bookmark</md-tooltip>
+              <i class="material-icons remove-bookmark-icon">highlight_off</i>
+            </div>
+            <md-divider ng-if="!$last"></md-divider>
+          </md-list-item>
+          <md-list-item>
+            <div class="md-list-item-text">
+              <h3>Brooklyn Bridge</h3>
+            </div>
+            <div class="md-icon-button">
+              <md-tooltip md-direction="left">Remove Bookmark</md-tooltip>
+              <i class="material-icons remove-bookmark-icon">highlight_off</i>
+            </div>
+            <md-divider ng-if="!$last"></md-divider>
+          </md-list-item>
+          <md-list-item>
+            <div class="md-list-item-text">
+              <h3>High Line</h3>
+            </div>
+            <div class="md-icon-button">
+              <md-tooltip md-direction="left">Remove Bookmark</md-tooltip>
+              <i class="material-icons remove-bookmark-icon">highlight_off</i>
+            </div>
+            <md-divider ng-if="!$last"></md-divider>
+          </md-list-item>
+          <md-list-item>
+            <div class="md-list-item-text">
+              <h3>Times Square</h3>
+            </div>
+            <div class="md-icon-button">
+              <md-tooltip md-direction="left">Remove Bookmark</md-tooltip>
+              <i class="material-icons remove-bookmark-icon">highlight_off</i>
+            </div>
+            <md-divider ng-if="!$last"></md-divider>
+          </md-list-item>
+          <md-list-item>
+            <div class="md-list-item-text">
+              <h3>Natural History Museum</h3>
+            </div>
+            <div class="md-icon-button">
+              <md-tooltip md-direction="left">Remove Bookmark</md-tooltip>
+              <i class="material-icons remove-bookmark-icon">highlight_off</i>
+            </div>
+            <md-divider ng-if="!$last"></md-divider>
+          </md-list-item>
+          <md-list-item>
+            <div class="md-list-item-text">
+              <h3>Top of the Rock</h3>
+            </div>
+            <div class="md-icon-button">
+              <md-tooltip md-direction="left">Remove Bookmark</md-tooltip>
+              <i class="material-icons remove-bookmark-icon">highlight_off</i>
+            </div>
+            <md-divider ng-if="!$last"></md-divider>
+          </md-list-item>
+        </md-list>
+      </md-card>
+    </div>
+  </div><!-- demo-row-2 -->
+</md-list-item>
