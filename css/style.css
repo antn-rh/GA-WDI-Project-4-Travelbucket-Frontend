@@ -83,10 +83,10 @@ ul {
   max-width: 50px;
 }
 
-#google-map {
-  max-width: 600px;
+.trip-index-show-more {
+  font-size: 14px;
 }
 
-#event-dialog {
-  max-width: 1000px;
+#google-map {
+  max-width: 600px;
 }

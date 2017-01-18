@@ -1,5 +1,12 @@
 <br>
 <md-card>
+  <md-toolbar class="md-primary">
+    <md-card-content>
+      <h2>Change of plans? Edit your trip.</h2>
+    </md-card-content>
+  </md-toolbar>
+</md-card>
+<md-card>
   <div class="edit-trip-form">
     <form name="colorForm" ng-submit="tripEditVm.updateTrip()">
       <div layout-gt-sm="row">
@@ -38,7 +45,9 @@
         </md-input-container>
         <md-input-container class="md-block" flex-gt-sm>
           <label>Time of Departing Flight: </label>
-          <input type="text" ng-model="tripEditVm.trip.departingFlight.departureTime">
+          <md-select ng-model="tripEditVm.trip.departingFlight.departureTime" ng-required="true">
+            <md-option ng-value="time" ng-repeat="time in tripEditVm.eventHours">{{time}}</md-option>
+          </md-select>
         </md-input-container>
         <md-input-container class="md-block" flex-gt-sm>
           <label>Departing Flight Duration: </label>
@@ -56,7 +65,9 @@
         </md-input-container>
         <md-input-container class="md-block" flex-gt-sm>
           <label>Time of Return Flight: </label>
-          <input type="text" ng-model="tripEditVm.trip.returnFlight.departureTime">
+          <md-select ng-model="tripEditVm.trip.returnFlight.departureTime" ng-required="true">
+            <md-option ng-value="time" ng-repeat="time in tripEditVm.eventHours">{{time}}</md-option>
+          </md-select>
         </md-input-container>
         <md-input-container class="md-block" flex-gt-sm>
           <label>Return Flight Duration: </label>
