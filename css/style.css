@@ -37,14 +37,13 @@ ul {
 .middle-container {
   float: left;
   width: 550px;
-  padding: 30px 0 20px 0;
+  padding: 30px 0 20px 10px;
 }
 
 .right-container {
   position: fixed;
-  right: 20px;
+  right: 10px;
   bottom: 10px;
-  padding: 40px 0 20px 10px;
 }
 
 .bookmark-list {
