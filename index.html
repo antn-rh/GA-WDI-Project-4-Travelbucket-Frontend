@@ -20,7 +20,7 @@
             <md-nav-item md-nav-sref="tripsIndex" ng-show="vm.authService.isLoggedIn()">My Trips</md-nav-item>
             <md-nav-item md-nav-sref="tripsNew" ng-show="vm.authService.isLoggedIn()">New Trip</md-nav-item>
 
-            <span flex=100> </span>
+            <span flex=100></span>
             <md-nav-item md-nav-sref="tripsIndex" ng-show="vm.authService.isLoggedIn()">{{vm.authService.currentUser().name }}</md-nav-item>
             <md-button class="md-accent md-hue-2" ng-hide="vm.authService.isLoggedIn()" ui-sref="signin" type="button">Sign in</md-button>
             <span flex> </span>
@@ -36,7 +36,7 @@
   <script src="js/auth/jwt-decode.2.0.1.js"></script>
   <!-- CDN for angular material css -->
   <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.css">
-  <!-- CDN for angularjs -->
+  <script src="https://apis.google.com/js/client.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-animate.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-aria.min.js"></script>

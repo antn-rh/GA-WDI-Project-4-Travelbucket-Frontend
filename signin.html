@@ -17,22 +17,17 @@
       </div>
     </md-input-container>
     <br>
-    <md-button class="md-accent" type="submit" ng-disabled="signInForm.$invalid">Submit</button>
+    <md-button class="md-accent md-raised" type="submit" ng-disabled="signInForm.$invalid">Submit</md-button>
+    <md-button class="md-accent md-raised" ng-click="vm.authenticate('google')">Sign In with Google</md-button>
   </form>
 
   <p>
     <strong>
-      If you are not a user yet,
-      <a class="underline" ng-click="vm.toggleValue = !vm.toggleValue;"><u>Sign Up</u></a>.
+      Not a user yet?
+      <a class="underline" ng-click="vm.toggleValue = !vm.toggleValue;"><u>Sign Up Here</u></a>.
     </strong>
   </p>
 </div> <!-- sign-in-form -->
-
-
-
-
-
-
 
 <div class="sign-up-form" ng-show="vm.toggleValue">
   <h1>Sign Up</h1>
@@ -69,18 +64,15 @@
       </div>
     </md-input-container>
     <br>
-    <md-button class="md-accent" type="submit">Submit</button>
+    <md-button class="md-accent md-raised" type="submit">Submit</md-button>
+    <md-button class="md-accent md-raised" ng-click="vm.authenticate('google')">Sign In with Google</md-button>
   </form>
 
   <p>
     <strong>
-      If you are already a user,
+      Already a user?
       <a ng-click="vm.toggleValue = !vm.toggleValue;"><u>Sign In</u></a>.
     </strong>
   </p>
 
 </div> <!-- sign-up-form -->
-
-<div class="google-sign-in">
-  <md-button class="md-accent" ng-click="vm.authenticate('google')">Sign In with Google</button>
-</div>

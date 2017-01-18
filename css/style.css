@@ -28,43 +28,66 @@ ul {
   margin: 3rem;
 }
 
-.google-sign-in {
-  margin: 0 0 0 6.5rem;
-}
-
-.left-container, .middle-container, .right-container {
+.left-container {
 	float: left;
-	width: 345px;
-	margin: 10px;
-	padding: 10px;
+	width: 600px;
+	padding: 30px 0 20px 30px;
 }
 
-.bookmarkList {
+.middle-container {
+  float: left;
+  width: 550px;
+  padding: 30px 0 20px 0;
+}
+
+.right-container {
+  position: fixed;
+  right: 20px;
+  bottom: 10px;
+  padding: 40px 0 20px 10px;
+}
+
+.bookmark-list {
   overflow-y: scroll;
   max-height: 190px;
   background-color: white;
 }
 
-.tripTitle {
+.trip-title {
   font-size: 30px;
 }
 
-.removeBookmarkIcon {
-  color: rgba(255, 0, 0, .7)
+.remove-bookmark-icon {
+  color: #F44336;
 }
 
-.searchBar {
+.search-icon {
+  color: #F44336;
+  padding-right: 15px;
+}
+
+.search-bar {
   padding-left: 10px;
 }
 
-.showPageListItem {
+.show-page-list-item {
   float: right;
 }
 
-#google-map {
-  max-width: 400px;
+.authorize-gcal {
+  font-weight: bold;
+  font-size: 14px;
 }
 
-#trip-card {
-  margin: 2rem;
+.event-submit-button {
+  float: right;
+  max-width: 50px;
+}
+
+#google-map {
+  max-width: 600px;
+}
+
+#event-dialog {
+  max-width: 1000px;
 }
