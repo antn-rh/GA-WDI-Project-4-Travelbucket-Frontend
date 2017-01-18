@@ -19,7 +19,7 @@
             </md-button>
           </p>
         </div>
-        <form ng-submit="tripShowVm.getCalendarEvents()">
+        <form>
           <br>
           <md-input-container ng-show="tripShowVm.authorized">
             <label>Select Calendar</label>
@@ -37,10 +37,101 @@
             <md-datepicker ng-model="tripShowVm.endDay"></md-datepicker>
           </md-input-container>
           <br>
-          <md-button class="md-raised md-accent" type='submit'>See Events</md-button>
+          <md-button ng-show="tripShowVm.authorized" ng-click="tripShowVm.getCalendarEvents()" class="md-raised md-accent" type="submit">See Events</md-button>
+          <md-button ng-show="tripShowVm.authorized" ng-click="tripShowVm.createEventDialog()" class="md-raised md-accent" id="open-event-form-button" type="submit">Create Event</md-button>
         </form>
       </md-card-content>
+      <md-card-content>
+        <div ng-repeat="event in tripShowVm.events">
+          <md-list>
+            <md-list-item>
+              <a href={{event.link}} target="_blank">{{event.summary}}</a>&nbsp;&nbsp;
+              <span>{{event.startTime | date: 'MM/dd/yy @ h:mm a'}} - {{event.endTime | date: 'h:mm a'}}</span>
+            </md-list-item>
+          </md-list>
+        </div>
+      </md-card-content>
     </md-card>
+
+    <div style="visibility: hidden">
+      <div class="md-dialog-container" id="event-dialog">
+        <md-dialog layout-padding>
+
+          <md-toolbar class="md-primary">
+            <h2 class="md-toolbar-tools">
+              <span>Create New Event</span>
+            </h2>
+          </md-toolbar>
+
+          <form id="event-form" ng-submit="tripShowVm.createCalendarEvent()">
+            <p>Please fill out the details of your event.</p>
+            <div layout-gt-sm="row">
+              <md-input-container class="md-block" flex-gt-sm>
+                <label>Summary: </label>
+                <input type="text" ng-model="tripShowVm.summary" required>
+                <div ng-messages="colorForm.favoriteColor.$error">
+                  <div ng-message="required">This is required!</div>
+                </div>
+              </md-input-container>
+              <md-input-container class="md-block" flex-gt-sm>
+                <label>Location: </label>
+                <input type="text" ng-model="tripShowVm.location" required>
+                <div ng-messages="colorForm.favoriteColor.$error">
+                  <div ng-message="required">This is required!</div>
+                </div>
+              </md-input-container>
+              <md-input-container class="md-block" flex-gt-sm>
+                <label>Description: </label>
+                <input type="text" ng-model="tripShowVm.description" required>
+                <div ng-messages="colorForm.favoriteColor.$error">
+                  <div ng-message="required">This is required!</div>
+                </div>
+              </md-input-container>
+            </div>
+
+            <div layout-gt-sm="row">
+              <md-input-container>
+                <label>Start Date: </label>
+                <md-datepicker ng-model="tripShowVm.startDateTime" ng-required="true"></md-datepicker>
+                <div ng-messages="colorForm.favoriteColor.$error">
+                  <div ng-message="required">This is required!</div>
+                </div>
+              </md-input-container>
+              <md-input-container>
+                <label>Start Time: </label>
+                <md-select ng-model="tripShowVm.startHour" ng-required="true">
+                  <md-option ng-value="time" ng-repeat="time in tripShowVm.eventHours">{{time}}</md-option>
+                </md-select>
+                <div ng-messages="colorForm.favoriteColor.$error">
+                  <div ng-message="required">This is required!</div>
+                </div>
+              </md-input-container>
+            </div>
+
+            <div layout-gt-sm="row">
+              <md-input-container>
+                <label>End Date: </label>
+                <md-datepicker ng-model="tripShowVm.endDateTime" ng-required="true"></md-datepicker>
+                <div ng-messages="colorForm.favoriteColor.$error">
+                  <div ng-message="required">This is required!</div>
+                </div>
+              </md-input-container>
+              <md-input-container>
+                <label>End Time: </label>
+                <md-select ng-model="tripShowVm.endHour" ng-required="true">
+                  <md-option ng-value="time" ng-repeat="time in tripShowVm.eventHours">{{time}}</md-option>
+                </md-select>
+                <div ng-messages="colorForm.favoriteColor.$error">
+                  <div ng-message="required">This is required!</div>
+                </div>
+              </md-input-container>
+            </div>
+            <md-button class="md-raised md-accent event-submit-button" type="submit">Submit</md-button>
+          </form>
+        </md-dialog>
+      </div>
+    </div>
+
 
     <md-card>
       <md-toolbar class="md-primary">
@@ -79,44 +170,6 @@
         </md-input-container>
       </form>
     </md-card>
-    <!-- <md-card>
-      <md-card-content>
-        <div ng-repeat="event in tripShowVm.events">
-          <md-list>
-            <md-list-item>
-              <a href={{event.link}} target="_blank">{{event.summary}}</a>
-              {{event.startTime | date: 'MM/dd/yy @ h:mm a'}} - {{event.endTime | date: 'h:mm a'}}
-            </md-list-item>
-          </md-list>
-        </div>
-      </md-card-content>
-    </md-card> -->
-
-    <md-dialog>
-      <form ng-cloak>
-        <md-toolbar class="md-primary">
-          <div class="md-toolbar-tools">
-            <h2>Your Upcoming Events</h2>
-            <span flex></span>
-            <md-button class="md-icon-button" ng-click="tripShowVm.cancel()">
-              <md-icon md-svg-src="img/icons/ic_close_24px.svg" aria-label="Close dialog"></md-icon>
-            </md-button>
-          </div>
-        </md-toolbar>
-
-        <md-dialog-content>
-          <div class="md-dialog-content" ng-repeat="event in tripShowVm.events">
-            <md-list>
-              <md-list-item>
-                <a href={{event.link}} target="_blank">{{event.summary}}</a>
-                {{event.startTime | date: 'MM/dd/yy @ h:mm a'}} - {{event.endTime | date: 'h:mm a'}}
-              </md-list-item>
-            </md-list>
-          </div>
-        </md-dialog-content>
-      </form>
-    </md-dialog>
-
   </div><!-- left-container -->
 
   <div class="middle-container">

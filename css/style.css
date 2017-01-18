@@ -79,6 +79,15 @@ ul {
   font-size: 14px;
 }
 
+.event-submit-button {
+  float: right;
+  max-width: 50px;
+}
+
 #google-map {
   max-width: 600px;
+}
+
+#event-dialog {
+  max-width: 1000px;
 }
